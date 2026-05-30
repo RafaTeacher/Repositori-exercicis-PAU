@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PAU Juny 2016 – Sèrie 5 · Classificació</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2e3248;
+    --accent: #e8c547;
+    --accent2: #5b8dee;
+    --text: #dde1f0;
+    --muted: #7a80a0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    padding: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  header {
+    border-left: 4px solid var(--accent);
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  header .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  header h1 {
+    font-size: 1.9rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  header h2 {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--muted);
+    margin-top: 0.2rem;
+  }
+
+  .pdf-links {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .pdf-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 5px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: opacity 0.15s;
+  }
+
+  .pdf-btn:hover { opacity: 0.8; }
+
+  .pdf-btn.preguntes {
+    background: rgba(91,141,238,0.15);
+    color: #5b8dee;
+    border: 1px solid rgba(91,141,238,0.4);
+  }
+
+  .pdf-btn.solucions {
+    background: rgba(126,201,138,0.15);
+    color: #7ec98a;
+    border: 1px solid rgba(126,201,138,0.4);
+  }
+
+  .pdf-icon { font-size: 1rem; }
+
+  .note {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent2);
+    border-radius: 6px;
+    padding: 0.9rem 1.2rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+  }
+
+  section { margin-bottom: 2.5rem; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-header h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .part-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    background: rgba(232,197,71,0.1);
+    border: 1px solid rgba(232,197,71,0.3);
+    border-radius: 3px;
+    padding: 0.15rem 0.5rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+
+  thead tr { background: var(--surface); }
+
+  thead th {
+    padding: 0.7rem 1rem;
+    text-align: left;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 2px solid var(--border);
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+
+  tbody tr:hover { background: var(--surface); }
+
+  tbody td {
+    padding: 0.75rem 1rem;
+    vertical-align: top;
+  }
+
+  .ref {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent2);
+    white-space: nowrap;
+  }
+
+  .ref a {
+    color: var(--accent2);
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(91,141,238,0.4);
+  }
+
+  .ref a:hover { border-bottom-style: solid; }
+
+  .tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.55rem;
+    border-radius: 3px;
+    white-space: nowrap;
+    margin: 0.1rem 0.1rem 0.1rem 0;
+  }
+
+  .tag-motors  { background: rgba(92,224,200,0.12);  color: #5ce0c8; border: 1px solid rgba(92,224,200,0.3); }
+  .tag-mat     { background: rgba(126,201,138,0.12); color: #7ec98a; border: 1px solid rgba(126,201,138,0.3); }
+  .tag-metro   { background: rgba(232,197,71,0.12);  color: #e8c547; border: 1px solid rgba(232,197,71,0.3); }
+  .tag-digital { background: rgba(91,141,238,0.12);  color: #5b8dee; border: 1px solid rgba(91,141,238,0.3); }
+  .tag-elec-cc { background: rgba(224,92,92,0.12);   color: #e05c5c; border: 1px solid rgba(224,92,92,0.3); }
+  .tag-mec     { background: rgba(201,126,201,0.12); color: #c97ec9; border: 1px solid rgba(201,126,201,0.3); }
+  .tag-hidro   { background: rgba(100,160,220,0.12); color: #64a0dc; border: 1px solid rgba(100,160,220,0.3); }
+  .tag-mat2    { background: rgba(126,201,138,0.12); color: #7ec98a; border: 1px solid rgba(126,201,138,0.3); }
+
+  .dual-note {
+    font-size: 0.72rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 0.25rem;
+  }
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="label">Tecnologia Industrial · PAU Catalunya</div>
+  <h1>Juny 2016 — Sèrie 5</h1>
+  <h2>Classificació per categories temàtiques</h2>
+</header>
+
+<div class="pdf-links">
+  <a class="pdf-btn preguntes" href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2016.pdf#page=5" target="_blank">
+    <span class="pdf-icon">📄</span> Preguntes (Sèrie 3 i 5)
+  </a>
+  <a class="pdf-btn solucions" href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2016____Solucions.pdf#page=3" target="_blank">
+    <span class="pdf-icon">✅</span> Solucions (Sèrie 3 i 5)
+  </a>
+</div>
+
+<div class="note">
+  ⚑ Els exercicis marcats amb dues categories apareixeran a les dues seccions de l'índex final. Els enllaços de la columna "Referència" apunten a la pàgina concreta del PDF.
+</div>
+
+<!-- PRIMERA PART -->
+<section>
+  <div class="section-header">
+    <span class="part-label">PRIMERA PART</span>
+    <h3>Exercici 1 — Qüestions tipus test</h3>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Referència</th>
+        <th>Resum de l'enunciat</th>
+        <th>Categoria</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2016.pdf#page=5" target="_blank">Juny 2016 · S5 · Ex1 · Q1</a></td>
+        <td>Kilograms de nitrogen en 4500 L de gas natural (86,15% metà, 12,68% età, 0,4% propà, 0,09% butà; densitat N₂=1,251 g/L)</td>
+        <td><span class="tag tag-mat">Matemàtiques aplicades</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2016.pdf#page=5" target="_blank">Juny 2016 · S5 · Ex1 · Q2</a></td>
+        <td>Preu de venda de pantalons: recuperar 250.000 € d'inversió + benefici mínim 15.000 € + costos de fabricació (cost unitari 10 €, venda prevista 5500–9500 unitats)</td>
+        <td><span class="tag tag-mat">Matemàtiques aplicades</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2016.pdf#page=6" target="_blank">Juny 2016 · S5 · Ex1 · Q3</a></td>
+        <td>Resistència a la tracció d'una barra massissa de secció quadrada de 5 mm de costat que aguanta fins a 5,9 kN</td>
+        <td><span class="tag tag-mat2">Materials - Prop. i assaigs</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2016.pdf#page=6" target="_blank">Juny 2016 · S5 · Ex1 · Q4</a></td>
+        <td>Velocitat de gir d'un motor asíncron de CA de 2 parells de pols amb lliscament relatiu 0,05 (U=220 V, f=50 Hz)</td>
+        <td><span class="tag tag-motors">Motors - Generadors</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2016.pdf#page=6" target="_blank">Juny 2016 · S5 · Ex1 · Q5</a></td>
+        <td>Potència necessària per carregar una bateria de vehicle elèctric (100 Ah, 5 h de càrrega, 220 V, 1800 cicles)</td>
+        <td><span class="tag tag-elec-cc">Electricitat CC</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <div class="section-header">
+    <span class="part-label">PRIMERA PART</span>
+    <h3>Exercici 2 — Sistema lògic</h3>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Referència</th>
+        <th>Resum de l'enunciat</th>
+        <th>Categoria</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2016.pdf#page=6" target="_blank">Juny 2016 · S5 · Ex2</a></td>
+        <td>Encreuament tramvia/cotxes: semàfor de cotxes canvia d'estat si tc&gt;15 s i no hi ha tramvies presents. Taula de veritat, funció lògica simplificada i diagrama de portes lògiques.</td>
+        <td><span class="tag tag-digital">Electrònica digital</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- SEGONA PART OPCIÓ A -->
+<section>
+  <div class="section-header">
+    <span class="part-label">SEGONA PART · OPCIÓ A</span>
+    <h3>Exercicis 3 i 4</h3>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Referència</th>
+        <th>Resum de l'enunciat</th>
+        <th>Categoria</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2016.pdf#page=7" target="_blank">Juny 2016 · S5 · OpA · Ex3</a></td>
+        <td>Planxa de cuina elèctrica amb fil de constantà (P=2,2 kW, U=230 V, 300×400 mm², ρ=4,9·10⁻⁷ Ω·m): corrent per a cada diàmetre disponible (0,125 / 0,25 / 0,5 mm), longitud necessària, diàmetre adequat i cost.</td>
+        <td><span class="tag tag-elec-cc">Electricitat CC</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2016.pdf#page=7" target="_blank">Juny 2016 · S5 · OpA · Ex4</a></td>
+        <td>Panell solar fotovoltaic (2 grups paral·lel × 36 cel·les sèrie): corrent de curtcircuit, tensió de circuit obert, potència màxima a U_màx=17,4 V i tensió/intensitat per cel·la.</td>
+        <td><span class="tag tag-mec">Energia - Potència - Mecanismes</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- SEGONA PART OPCIÓ B -->
+<section>
+  <div class="section-header">
+    <span class="part-label">SEGONA PART · OPCIÓ B</span>
+    <h3>Exercicis 3 i 4</h3>
+  </div>
+  <table>
+    <thead>
+      <tr>
+        <th>Referència</th>
+        <th>Resum de l'enunciat</th>
+        <th>Categoria</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2016.pdf#page=8" target="_blank">Juny 2016 · S5 · OpB · Ex3</a></td>
+        <td>Pala d'obres públiques amb 2 cilindres hidràulics (d_int=110 mm, d_tija=70 mm, m=1800 kg): relació de velocitats v_cil/v_p en funció de h, força per cilindre a h=1100 mm i pressió interior.</td>
+        <td><span class="tag tag-hidro">Pneumàtica i Hidràulica</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2016.pdf#page=8" target="_blank">Juny 2016 · S5 · OpB · Ex4</a></td>
+        <td>Captadors solars tèrmics (S=2,2 m², P=1800 W, c=240 L/dia, T_entrada=10°C, T_sortida=45°C): irradiació solar mínima, nombre de captadors necessaris i energia elèctrica diària consumida.</td>
+        <td><span class="tag tag-mec">Energia - Potència - Mecanismes</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<footer>
+  Generat automàticament · PAU Tecnologia Industrial · Juny 2016 Sèrie 5
+</footer>
+
+</body>
+</html>
