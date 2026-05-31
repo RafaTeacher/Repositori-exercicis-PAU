@@ -1,0 +1,1047 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fórmules · PAU Tecnologia i Enginyeria</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-chtml.min.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600;700&display=swap');
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #20243a;
+    --border: #2e3248;
+    --accent: #e8c547;
+    --accent2: #5b8dee;
+    --text: #dde1f0;
+    --muted: #7a80a0;
+    --c-elec-dc:  #e05c5c;
+    --c-elec-ac:  #e0943a;
+    --c-digital:  #5b8dee;
+    --c-energia:  #c97ec9;
+    --c-mat:      #7ec98a;
+    --c-materials:#d4a853;
+    --c-metro:    #e8c547;
+    --c-motors:   #5ce0c8;
+    --c-hidro:    #64a0dc;
+    --c-solid:    #c9a06e;
+    --c-termo:    #e07a7a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  /* ── SIDEBAR ── */
+  #sidebar {
+    position: fixed;
+    top: 0; left: 0;
+    width: 260px;
+    height: 100vh;
+    background: var(--surface);
+    border-right: 1px solid var(--border);
+    overflow-y: auto;
+    z-index: 100;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar-header {
+    padding: 1.5rem 1.2rem 1rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .sidebar-header .logo-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.65rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .sidebar-header h1 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: var(--accent);
+    line-height: 1.3;
+  }
+
+  .sidebar-header .subtitle {
+    font-size: 0.75rem;
+    color: var(--muted);
+    margin-top: 0.2rem;
+  }
+
+  .sidebar-nav { padding: 0.8rem 0; flex: 1; }
+
+  .nav-section-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.62rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 0.4rem 1.2rem 0.3rem;
+  }
+
+  .nav-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 0.45rem 1.2rem;
+    cursor: pointer;
+    transition: background 0.12s;
+    border-left: 3px solid transparent;
+    text-decoration: none;
+    color: var(--text);
+  }
+
+  .nav-item:hover { background: var(--surface2); }
+  .nav-item.active { background: var(--surface2); border-left-color: var(--accent); }
+
+  .nav-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .nav-item-text { font-size: 0.82rem; flex: 1; line-height: 1.3; }
+
+  /* ── MAIN ── */
+  #main {
+    margin-left: 260px;
+    padding: 2.5rem 2.5rem 4rem;
+    max-width: 900px;
+  }
+
+  .page-header {
+    margin-bottom: 2.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .page-header .eyebrow {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .page-header h2 {
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--accent);
+    margin-bottom: 0.3rem;
+  }
+
+  .page-header p {
+    font-size: 0.9rem;
+    color: var(--muted);
+    max-width: 600px;
+  }
+
+  /* ── CATEGORY SECTION ── */
+  .cat-section { display: none; animation: fadeIn 0.2s ease; }
+  .cat-section.active { display: block; }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .cat-header-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .cat-color-bar { width: 4px; height: 2.5rem; border-radius: 2px; flex-shrink: 0; }
+  .cat-header-bar h2 { font-size: 1.3rem; font-weight: 600; color: var(--text); }
+
+  .cat-desc-text {
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 2rem;
+    line-height: 1.5;
+    max-width: 700px;
+  }
+
+  /* ── FORMULA BLOCK ── */
+  .formula-group {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+  }
+
+  .formula-group-title {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent2);
+    padding: 0.7rem 1.2rem;
+    background: var(--surface2);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .formula-item {
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .formula-item:last-child { border-bottom: none; }
+
+  .formula-name {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.4rem;
+  }
+
+  .formula-math {
+    font-size: 1rem;
+    color: var(--text);
+    margin: 0.5rem 0;
+    padding: 0.6rem 1rem;
+    background: var(--bg);
+    border-radius: 5px;
+    border-left: 3px solid var(--accent);
+    overflow-x: auto;
+  }
+
+  .formula-vars {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-top: 0.4rem;
+    line-height: 1.6;
+  }
+
+  .formula-vars code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent2);
+    background: rgba(91,141,238,0.1);
+    padding: 0.05rem 0.3rem;
+    border-radius: 3px;
+  }
+
+  /* ── NOTES (amaga/mostra) ── */
+  .note-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.6rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 600;
+    color: var(--muted);
+    background: var(--surface2);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 0.25rem 0.6rem;
+    cursor: pointer;
+    transition: color 0.15s, border-color 0.15s;
+    user-select: none;
+  }
+
+  .note-toggle:hover { color: var(--accent); border-color: var(--accent); }
+
+  .note-content {
+    display: none;
+    margin-top: 0.6rem;
+    padding: 0.7rem 0.9rem;
+    background: rgba(232,197,71,0.06);
+    border: 1px solid rgba(232,197,71,0.2);
+    border-radius: 5px;
+    font-size: 0.82rem;
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  .note-content.visible { display: block; }
+
+  .note-content ul { padding-left: 1.2rem; margin-top: 0.3rem; }
+  .note-content li { margin-bottom: 0.2rem; }
+  .note-content strong { color: var(--accent); font-weight: 600; }
+  .note-content code {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent2);
+    background: rgba(91,141,238,0.1);
+    padding: 0.05rem 0.3rem;
+    border-radius: 3px;
+  }
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════ SIDEBAR ═══════════════ -->
+<nav id="sidebar">
+  <div class="sidebar-header">
+    <div class="logo-label">PAU · Tecnologia i Enginyeria</div>
+    <h1>Formulari de referència</h1>
+    <div class="subtitle">Fórmules per categoria temàtica</div>
+  </div>
+  <div class="sidebar-nav">
+    <div class="nav-section-label">Categories</div>
+    <a class="nav-item active" onclick="showCat('elec-dc')" href="#">
+      <span class="nav-dot" style="background:var(--c-elec-dc)"></span>
+      <span class="nav-item-text">Electricitat DC</span>
+    </a>
+    <a class="nav-item" onclick="showCat('digital')" href="#">
+      <span class="nav-dot" style="background:var(--c-digital)"></span>
+      <span class="nav-item-text">Electrònica digital</span>
+    </a>
+    <a class="nav-item" onclick="showCat('energia')" href="#">
+      <span class="nav-dot" style="background:var(--c-energia)"></span>
+      <span class="nav-item-text">Energia · Potència · Mecanismes</span>
+    </a>
+    <a class="nav-item" onclick="showCat('mat')" href="#">
+      <span class="nav-dot" style="background:var(--c-mat)"></span>
+      <span class="nav-item-text">Matemàtiques aplicades</span>
+    </a>
+    <a class="nav-item" onclick="showCat('materials')" href="#">
+      <span class="nav-dot" style="background:var(--c-materials)"></span>
+      <span class="nav-item-text">Materials · Propietats i assaigs</span>
+    </a>
+    <a class="nav-item" onclick="showCat('metro')" href="#">
+      <span class="nav-dot" style="background:var(--c-metro)"></span>
+      <span class="nav-item-text">Metrologia i normalització</span>
+    </a>
+    <a class="nav-item" onclick="showCat('motors')" href="#">
+      <span class="nav-dot" style="background:var(--c-motors)"></span>
+      <span class="nav-item-text">Motors · Generadors elèctrics</span>
+    </a>
+    <a class="nav-item" onclick="showCat('hidro')" href="#">
+      <span class="nav-dot" style="background:var(--c-hidro)"></span>
+      <span class="nav-item-text">Pneumàtica i Hidràulica</span>
+    </a>
+    <a class="nav-item" onclick="showCat('solid')" href="#">
+      <span class="nav-dot" style="background:var(--c-solid)"></span>
+      <span class="nav-item-text">Sòlid-rígid (estàtica)</span>
+    </a>
+    <a class="nav-item" onclick="showCat('termo')" href="#">
+      <span class="nav-dot" style="background:var(--c-termo)"></span>
+      <span class="nav-item-text">Termodinàmica</span>
+    </a>
+  </div>
+</nav>
+
+<!-- ═══════════════ MAIN ═══════════════ -->
+<main id="main">
+
+  <div class="page-header">
+    <div class="eyebrow">Proves d'accés a la universitat · Catalunya</div>
+    <h2>Formulari de referència</h2>
+    <p>Fórmules i relacions clau per categoria. Fes clic a <strong style="color:var(--accent)">Comentaris</strong> per veure advertiments i consells pràctics per a cada fórmula.</p>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       ELECTRICITAT DC
+  ══════════════════════════════════════ -->
+  <div id="cat-elec-dc" class="cat-section active">
+    <div class="cat-header-bar">
+      <div class="cat-color-bar" style="background:var(--c-elec-dc)"></div>
+      <h2>Electricitat DC</h2>
+    </div>
+    <p class="cat-desc-text">Circuits de corrent continu: llei d'Ohm, resistències en sèrie i paral·lel, potència i energia elèctrica, caiguda de tensió en cables.</p>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Llei d'Ohm i resistència</div>
+      <div class="formula-item">
+        <div class="formula-name">Llei d'Ohm</div>
+        <div class="formula-math">\( U = I \cdot R \)</div>
+        <div class="formula-vars"><code>U</code> tensió (V) · <code>I</code> intensitat (A) · <code>R</code> resistència (Ω)</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>Aplicable a cada element del circuit o al circuit complet.</li>
+            <li>En circuits amb diverses resistències, primer calcula la resistència equivalent.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Resistències en sèrie</div>
+        <div class="formula-math">\( R_{eq} = R_1 + R_2 + \cdots + R_n \)</div>
+        <div class="formula-vars">La mateixa intensitat circula per totes les resistències. La tensió total es reparteix.</div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Resistències en paral·lel</div>
+        <div class="formula-math">\( \frac{1}{R_{eq}} = \frac{1}{R_1} + \frac{1}{R_2} + \cdots \quad \Rightarrow \quad R_{eq} = \frac{R_1 \cdot R_2}{R_1 + R_2} \text{ (per a dues)} \)</div>
+        <div class="formula-vars">La mateixa tensió als borns de totes. La intensitat total es reparteix.</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>La fórmula simplificada <strong>R₁·R₂/(R₁+R₂)</strong> és vàlida <strong>només per a dues</strong> resistències.</li>
+            <li>Per a més de dues, usa la fórmula inversa general.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Resistència d'un conductor</div>
+        <div class="formula-math">\( R = \rho \cdot \frac{L}{S} \)</div>
+        <div class="formula-vars"><code>ρ</code> resistivitat (Ω·m) · <code>L</code> longitud (m) · <code>S</code> secció (m²)</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>En un <strong>cable bipolar</strong> (anada i tornada), la longitud efectiva és <strong>2L</strong>.</li>
+            <li>Si el diàmetre és <code>d</code>, llavors \( S = \pi d^2/4 \).</li>
+            <li>Unitats habituals a l'examen: ρ en µΩ·m → convertir a Ω·m multiplicant per 10⁻⁶.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Potència i energia</div>
+      <div class="formula-item">
+        <div class="formula-name">Potència elèctrica</div>
+        <div class="formula-math">\( P = U \cdot I = I^2 \cdot R = \frac{U^2}{R} \)</div>
+        <div class="formula-vars"><code>P</code> potència (W)</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>Tria la forma que s'adapti a les dades disponibles del problema.</li>
+            <li><strong>P = U²/R</strong> és útil quan coneixes la tensió i la resistència directament.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Energia elèctrica</div>
+        <div class="formula-math">\( E = P \cdot t \)</div>
+        <div class="formula-vars"><code>E</code> energia (J o Wh) · <code>t</code> temps (s o h)</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>Si <code>P</code> és en W i <code>t</code> en s → <code>E</code> en J. Si <code>t</code> en h → <code>E</code> en Wh.</li>
+            <li>Conversió: 1 kWh = 3,6 MJ.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Energia calorífica (escalfament d'aigua)</div>
+        <div class="formula-math">\( E = m \cdot c_e \cdot \Delta T = V \cdot \rho \cdot c_e \cdot (T_1 - T_0) \)</div>
+        <div class="formula-vars"><code>m</code> massa (kg) · <code>c_e</code> calor específica (J/kg·°C) · <code>ΔT</code> increment de temperatura (°C)<br><code>V</code> volum (m³ o L) · <code>ρ</code> densitat (kg/m³ o kg/L)</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>Per a l'aigua: <strong>c_e = 4180 J/(kg·°C) = 4,18 kJ/(kg·°C)</strong>.</li>
+            <li>Si el volum és en litres i ρ = 1 kg/L, llavors m = V (en kg).</li>
+            <li>Aquesta equació assumeix que tota la potència elèctrica es transforma en calor (rendiment 100%).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Caiguda de tensió en cables</div>
+      <div class="formula-item">
+        <div class="formula-name">Caiguda de tensió</div>
+        <div class="formula-math">\( \Delta U = I \cdot R_{cable} \quad \Rightarrow \quad \frac{\Delta U}{U} \leq \% \text{ màxim permès} \)</div>
+        <div class="formula-vars"><code>ΔU</code> caiguda de tensió (V) · <code>U</code> tensió de la font (V)</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>En cables bipolars (anada i tornada), la resistència total del cable és <strong>R_cable = ρ·2L/S</strong>.</li>
+            <li>La condició habitual als problemes és que ΔU no superi un 3% o 5% de U.</li>
+            <li>Per trobar la secció mínima: aïlla <code>S</code> de la condició de caiguda màxima.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       ELECTRÒNICA DIGITAL
+  ══════════════════════════════════════ -->
+  <div id="cat-digital" class="cat-section">
+    <div class="cat-header-bar">
+      <div class="cat-color-bar" style="background:var(--c-digital)"></div>
+      <h2>Electrònica digital</h2>
+    </div>
+    <p class="cat-desc-text">Sistemes lògics combinacionals: taules de veritat, funcions booleanes, simplificació, portes lògiques i esquemes de contactes.</p>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Àlgebra de Boole — identitats bàsiques</div>
+      <div class="formula-item">
+        <div class="formula-name">Lleis de De Morgan</div>
+        <div class="formula-math">\( \overline{A \cdot B} = \bar{A} + \bar{B} \qquad \overline{A + B} = \bar{A} \cdot \bar{B} \)</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>Imprescindibles per simplificar funcions amb negacions compostes.</li>
+            <li>Regla mnemotècnica: <strong>canvia el signe de l'operació i nega cada terme per separat</strong>.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Propietats d'absorció i distributiva</div>
+        <div class="formula-math">\( A + A \cdot B = A \qquad A \cdot (A + B) = A \)</div>
+        <div class="formula-math">\( A \cdot (B + C) = A \cdot B + A \cdot C \)</div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Identitats útils per simplificar</div>
+        <div class="formula-math">\( A + \bar{A} \cdot B = A + B \qquad A \cdot \bar{A} = 0 \qquad A + A = A \)</div>
+      </div>
+    </div>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Procediment estàndard a l'examen</div>
+      <div class="formula-item">
+        <div class="formula-name">Passos per resoldre l'Exercici 2</div>
+        <div class="formula-vars">
+          1. <strong>Taula de veritat:</strong> identifica les variables d'entrada i la de sortida. Omple totes les combinacions (2ⁿ files per n variables).<br>
+          2. <strong>Funció lògica:</strong> escriu la suma de minterms (files amb sortida = 1) i simplifica amb àlgebra de Boole o mapa de Karnaugh.<br>
+          3. <strong>Esquema:</strong> dibuixa el circuit amb portes lògiques (AND, OR, NOT) o amb contactes (contactes normalment oberts i tancats en sèrie/paral·lel).
+        </div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>Als exàmens PAU, la simplificació sol donar una expressió de 2 o 3 termes màxim.</li>
+            <li>Comprova sempre la simplificació substituint valors de la taula de veritat.</li>
+            <li>En l'esquema de contactes: contacte <strong>normalment obert (NO)</strong> = variable sense negar; <strong>normalment tancat (NC)</strong> = variable negada.</li>
+            <li>Portes en sèrie = AND; portes en paral·lel = OR.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       ENERGIA · POTÈNCIA · MECANISMES
+  ══════════════════════════════════════ -->
+  <div id="cat-energia" class="cat-section">
+    <div class="cat-header-bar">
+      <div class="cat-color-bar" style="background:var(--c-energia)"></div>
+      <h2>Energia · Potència · Mecanismes</h2>
+    </div>
+    <p class="cat-desc-text">Potència mecànica, rendiment de transmissions, mecanismes (engranatges, politges, cadenes), energia i treball.</p>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Treball, potència i rendiment</div>
+      <div class="formula-item">
+        <div class="formula-name">Treball i potència mecànica</div>
+        <div class="formula-math">\( W = F \cdot d \qquad P = \frac{W}{t} = F \cdot v \)</div>
+        <div class="formula-vars"><code>W</code> treball (J) · <code>F</code> força (N) · <code>d</code> desplaçament (m) · <code>P</code> potència (W) · <code>v</code> velocitat (m/s)</div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Potència per elevar una massa</div>
+        <div class="formula-math">\( P_{mec} = m \cdot g \cdot v \quad \text{o} \quad P_{mec} = \frac{m \cdot g \cdot \Delta h}{t} \)</div>
+        <div class="formula-vars"><code>g</code> = 9,81 m/s² · <code>v</code> velocitat d'ascens (m/s) · <code>Δh</code> alçada (m) · <code>t</code> temps (s)</div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Rendiment</div>
+        <div class="formula-math">\( \eta = \frac{P_{útil}}{P_{entrada}} \qquad P_{dissipada} = P_{entrada} \cdot (1 - \eta) \)</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>En cadenes de transmissió: \( \eta_{total} = \eta_1 \cdot \eta_2 \cdot \ldots \)</li>
+            <li><strong>Atenció a l'ordre:</strong> P_útil és la potència que s'aprofita, P_entrada la que s'introdueix al sistema.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Rotació i parell</div>
+      <div class="formula-item">
+        <div class="formula-name">Velocitat angular i lineal</div>
+        <div class="formula-math">\( \omega = \frac{2\pi n}{60} \qquad v = \omega \cdot r \)</div>
+        <div class="formula-vars"><code>ω</code> velocitat angular (rad/s) · <code>n</code> velocitat de rotació (min⁻¹) · <code>r</code> radi (m)</div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Parell i potència de rotació</div>
+        <div class="formula-math">\( P = \Gamma \cdot \omega \qquad \Gamma = \frac{P}{\omega} \)</div>
+        <div class="formula-vars"><code>Γ</code> parell (N·m)</div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Relació de transmissió</div>
+        <div class="formula-math">\( \tau = \frac{\omega_2}{\omega_1} = \frac{n_2}{n_1} = \frac{r_1}{r_2} = \frac{z_1}{z_2} \)</div>
+        <div class="formula-vars"><code>z</code> nombre de dents · <code>r</code> radi primitiu</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>Si τ &lt; 1 → reducció de velocitat, augment de parell.</li>
+            <li>Si τ &gt; 1 → multiplicació de velocitat (multiplicador).</li>
+            <li><strong>Atenció:</strong> als problemes de bicicleta o moto, τ = ω_roda/ω_pedals (o sortida/entrada).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Energia solar tèrmica</div>
+      <div class="formula-item">
+        <div class="formula-name">Energia necessària per escalfar aigua</div>
+        <div class="formula-math">\( E_{dia} = m \cdot c_e \cdot \Delta T = c \cdot \rho \cdot c_e \cdot \Delta T \)</div>
+        <div class="formula-vars"><code>c</code> consum diari (L) · <code>ρ</code> densitat de l'aigua (≈1 kg/L)</div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Energia solar captada</div>
+        <div class="formula-math">\( E_{solar} = \eta \cdot S \cdot I \cdot t \)</div>
+        <div class="formula-vars"><code>η</code> rendiment del captador · <code>S</code> superfície (m²) · <code>I</code> irradiació (W/m²) · <code>t</code> temps (s o h)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       MATEMÀTIQUES APLICADES
+  ══════════════════════════════════════ -->
+  <div id="cat-mat" class="cat-section">
+    <div class="cat-header-bar">
+      <div class="cat-color-bar" style="background:var(--c-mat)"></div>
+      <h2>Matemàtiques aplicades</h2>
+    </div>
+    <p class="cat-desc-text">Proporcionalitat, percentatges, costos de producció, estadística bàsica i càlculs aplicats a contextos industrials.</p>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Costos i beneficis</div>
+      <div class="formula-item">
+        <div class="formula-name">Cost total de producció</div>
+        <div class="formula-math">\( C_{total} = C_{fix} + C_{variable} \cdot n \)</div>
+        <div class="formula-vars"><code>n</code> nombre d'unitats produïdes</div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Preu mínim de venda per obtenir benefici</div>
+        <div class="formula-math">\( P_{venda} \geq \frac{C_{total} + B_{mínim}}{n} \)</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>Als problemes, cal trobar el preu que cobreixi costos fixos + costos variables + benefici mínim per al pitjor cas (nombre mínim d'unitats venudes).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Percentatges i taxes</div>
+      <div class="formula-item">
+        <div class="formula-name">Taxa de rebuig en processos en sèrie</div>
+        <div class="formula-math">\( n_{finals} = n_{inicials} \cdot (1 - r_1) \cdot (1 - r_2) \cdots \)</div>
+        <div class="formula-vars"><code>r</code> taxa de rebuig en tant per u (p. ex. 3% → r = 0,03)</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>Cada procés es fa sobre les peces que han superat el procés anterior.</li>
+            <li>Si donen el percentatge final i una de les taxes, aïlla l'altra.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Composició d'aliatges</div>
+        <div class="formula-math">\( m_{component} = m_{total} \cdot \frac{\%_{component}}{100} \)</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>Si el component majoritari és la base (p. ex. Zn), la massa total no és la massa del component, sinó que cal calcular-la: \( m_{total} = m_{base} / (1 - \%_{resta}/100) \) o bé via regla de tres.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Geometria aplicada (peces i materials)</div>
+      <div class="formula-item">
+        <div class="formula-name">Cost de tauler de fusta</div>
+        <div class="formula-math">\( c = c_a \cdot p + c_b \cdot s \)</div>
+        <div class="formula-vars"><code>p</code> perímetre total tallat (m) · <code>s</code> superfície de tauler (m²) · <code>c_a, c_b</code> coeficients de cost</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       MATERIALS
+  ══════════════════════════════════════ -->
+  <div id="cat-materials" class="cat-section">
+    <div class="cat-header-bar">
+      <div class="cat-color-bar" style="background:var(--c-materials)"></div>
+      <h2>Materials · Propietats i assaigs</h2>
+    </div>
+    <p class="cat-desc-text">Propietats mecàniques (tensió, deformació, límit elàstic, ruptura), composició d'aliatges i assaigs de tracció.</p>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Tensió i deformació</div>
+      <div class="formula-item">
+        <div class="formula-name">Tensió normal</div>
+        <div class="formula-math">\( \sigma = \frac{F}{S} \)</div>
+        <div class="formula-vars"><code>σ</code> tensió (Pa o N/mm² = MPa) · <code>F</code> força (N) · <code>S</code> secció (m² o mm²)</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>Atenció a les unitats: si F és en N i S en mm², σ surt en N/mm² = MPa directament.</li>
+            <li>Per a una secció circular: \( S = \pi d^2 / 4 \).</li>
+          </ul>
+        </div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Deformació unitària (elongació)</div>
+        <div class="formula-math">\( \varepsilon = \frac{\Delta L}{L_0} = \frac{\sigma}{E} \)</div>
+        <div class="formula-vars"><code>ε</code> deformació (adimensional) · <code>ΔL</code> allargament (m) · <code>L₀</code> longitud inicial (m) · <code>E</code> mòdul d'elasticitat (Pa)</div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Allargament total</div>
+        <div class="formula-math">\( \Delta L = \varepsilon \cdot L_0 = \frac{\sigma}{E} \cdot L_0 = \frac{F \cdot L_0}{S \cdot E} \)</div>
+      </div>
+    </div>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Criteris de resistència</div>
+      <div class="formula-item">
+        <div class="formula-name">Condició per evitar deformació plàstica</div>
+        <div class="formula-math">\( \sigma \leq \sigma_e \)</div>
+        <div class="formula-vars"><code>σ_e</code> límit elàstic del material (MPa)</div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Condició per evitar trencament</div>
+        <div class="formula-math">\( \sigma \leq \sigma_r \)</div>
+        <div class="formula-vars"><code>σ_r</code> tensió de ruptura del material (MPa)</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>Per trobar la <strong>secció mínima</strong>, aïlla S: \( S \geq F / \sigma_{límit} \).</li>
+            <li>Si el problema demana que no hi hagi deformació plàstica, usa σ_e. Si demana que no es trenqui, usa σ_r.</li>
+            <li>Si σ &gt; σ_e però σ &lt; σ_r → hi ha deformació plàstica però no trencament.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       METROLOGIA I NORMALITZACIÓ
+  ══════════════════════════════════════ -->
+  <div id="cat-metro" class="cat-section">
+    <div class="cat-header-bar">
+      <div class="cat-color-bar" style="background:var(--c-metro)"></div>
+      <h2>Metrologia i normalització</h2>
+    </div>
+    <p class="cat-desc-text">Toleràncies dimensionals, ajustos (joc/serratge), precisió i error de mesura, instruments i normes ISO.</p>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Toleràncies i ajustos</div>
+      <div class="formula-item">
+        <div class="formula-name">Joc en un ajust</div>
+        <div class="formula-math">\( J = D_{forat} - d_{eix} \)</div>
+        <div class="formula-vars"><code>D</code> diàmetre del forat · <code>d</code> diàmetre de l'eix</div>
+        <div class="formula-math">\( J_{màx} = D_{màx} - d_{min} \qquad J_{min} = D_{min} - d_{màx} \)</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>Ajust amb <strong>joc</strong>: J_min ≥ 0 (el forat sempre és més gran que l'eix).</li>
+            <li>Ajust amb <strong>serratge</strong>: J_max ≤ 0 (l'eix sempre és més gran que el forat).</li>
+            <li>Ajust <strong>indeterminat</strong>: J_min &lt; 0 &lt; J_max (pot tenir joc o serratge).</li>
+            <li>Notació: tolerància forat H7 = (+25/0) µm significa D_max = D_nom+25 µm, D_min = D_nom.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Serratge</div>
+        <div class="formula-math">\( S_{màx} = d_{màx} - D_{min} \qquad S_{min} = d_{min} - D_{màx} \)</div>
+      </div>
+    </div>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Errors de mesura</div>
+      <div class="formula-item">
+        <div class="formula-name">Interval de la mesura real</div>
+        <div class="formula-math">\( x_{real} \in [x_{llegida} - e,\ x_{llegida} + e] \)</div>
+        <div class="formula-vars"><code>e</code> error absolut de l'instrument</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>Quan l'error és relatiu (±%), l'error absolut depèn de la mesura: <code>e = x · %/100</code>.</li>
+            <li>Quan hi ha diverses fonts d'error (precisió + estabilitat), els errors s'acumulen.</li>
+            <li>Per a la diferència de dues mesures, els errors s'<strong>acumulen</strong>: e_total = e₁ + e₂.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Valor mitjà i desviació</div>
+        <div class="formula-math">\( \bar{x} = \frac{\sum x_i}{n} \)</div>
+        <div class="formula-vars">El valor més probable d'una mesura repetida és la mitjana aritmètica.</div>
+      </div>
+    </div>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Cargols i rosques</div>
+      <div class="formula-item">
+        <div class="formula-name">Avanç per volta</div>
+        <div class="formula-math">\( \text{avanç total} = p \cdot N_{voltes} \)</div>
+        <div class="formula-vars"><code>p</code> pas de la rosca (mm) · <code>N_voltes</code> nombre de voltes</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>En un cargol M16×2, el pas és p = 2 mm. Per avançar 8 mm: N = 8/2 = 4 voltes.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       MOTORS · GENERADORS ELÈCTRICS
+  ══════════════════════════════════════ -->
+  <div id="cat-motors" class="cat-section">
+    <div class="cat-header-bar">
+      <div class="cat-color-bar" style="background:var(--c-motors)"></div>
+      <h2>Motors · Generadors elèctrics</h2>
+    </div>
+    <p class="cat-desc-text">Motors asíncrons de CA (velocitat de sincronisme, lliscament), motors de CC (parell, rendiment) i aerogeneradors.</p>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Motor asíncron de corrent altern (CA)</div>
+      <div class="formula-item">
+        <div class="formula-name">Velocitat de sincronisme</div>
+        <div class="formula-math">\( n_s = \frac{60 \cdot f}{p} \quad \text{(min}^{-1}\text{)} \qquad \omega_s = \frac{2\pi f}{p} \quad \text{(rad/s)} \)</div>
+        <div class="formula-vars"><code>f</code> freqüència de xarxa (Hz) · <code>p</code> nombre de parells de pols</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>A 50 Hz: 1 parell → 3000 rpm, 2 parells → 1500 rpm, 3 parells → 1000 rpm, 4 parells → 750 rpm, 5 parells → 600 rpm.</li>
+            <li><strong>Atenció:</strong> l'enunciat pot donar el nombre de <em>pols</em> (no de parells): p_parells = n_pols / 2.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Lliscament relatiu</div>
+        <div class="formula-math">\( s = \frac{n_s - n}{n_s} \)</div>
+        <div class="formula-vars"><code>s</code> lliscament (adimensional o %) · <code>n</code> velocitat real del rotor (min⁻¹)</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>El lliscament típic és entre 2% i 8%. Mai és 0 en càrrega (si fos 0, no hi hauria parell).</li>
+            <li>Per trobar n real: \( n = n_s \cdot (1 - s) \).</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Motor de corrent continu (CC)</div>
+      <div class="formula-item">
+        <div class="formula-name">Parell i corrent</div>
+        <div class="formula-math">\( \Gamma = c \cdot I \qquad I = \frac{U - c\omega}{R} \)</div>
+        <div class="formula-vars"><code>c</code> constant del motor (N·m/A) · <code>R</code> resistència del circuit (Ω) · <code>U</code> tensió d'alimentació (V)</div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Rendiment electromecànic</div>
+        <div class="formula-math">\( \eta_{mot} = \frac{P_{mec}}{P_{elèc}} = \frac{\Gamma \cdot \omega}{U \cdot I} \)</div>
+      </div>
+    </div>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Aerogeneradors i generadors</div>
+      <div class="formula-item">
+        <div class="formula-name">Cadena de transmissió aerogenerador</div>
+        <div class="formula-math">\( P_{elèc} = P_{entrada} \cdot \eta_{mult} \cdot \eta_{gen} \)</div>
+        <div class="formula-vars"><code>η_mult</code> rendiment multiplicador · <code>η_gen</code> rendiment generador</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>El multiplicador augmenta la velocitat (τ &gt; 1) per adaptar la lenta velocitat del rotor eòlic a la ràpida del generador.</li>
+            <li>Potència dissipada al multiplicador: \( P_{diss,mult} = P_{entrada} \cdot (1 - \eta_{mult}) \)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       PNEUMÀTICA I HIDRÀULICA
+  ══════════════════════════════════════ -->
+  <div id="cat-hidro" class="cat-section">
+    <div class="cat-header-bar">
+      <div class="cat-color-bar" style="background:var(--c-hidro)"></div>
+      <h2>Pneumàtica i Hidràulica</h2>
+    </div>
+    <p class="cat-desc-text">Cilindres hidràulics (força, pressió, velocitat), bombes (cabal, potència) i circuits hidràulics i pneumàtics.</p>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Cilindres hidràulics</div>
+      <div class="formula-item">
+        <div class="formula-name">Força del cilindre</div>
+        <div class="formula-math">\( F = p \cdot S \)</div>
+        <div class="formula-vars"><code>p</code> pressió relativa (Pa) · <code>S</code> secció interior del cilindre (m²)</div>
+        <div class="formula-math">\( S_{int} = \frac{\pi d_{int}^2}{4} \)</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>Per a cilindre de simple efecte (empeny en una sola direcció): F = p · S_int.</li>
+            <li>Per a cilindre de doble efecte en sentit de retrocés (tija fa força): S_útil = π(d_int² − d_tija²)/4.</li>
+            <li>Unitats habituals: p en MPa = N/mm², S en mm² → F en N.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Velocitat del pistó</div>
+        <div class="formula-math">\( v = \frac{q}{S_{int}} \)</div>
+        <div class="formula-vars"><code>q</code> cabal (m³/s o L/s) · <code>v</code> velocitat (m/s)</div>
+      </div>
+    </div>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Bombes hidràuliques</div>
+      <div class="formula-item">
+        <div class="formula-name">Potència hidràulica de la bomba</div>
+        <div class="formula-math">\( P_h = p \cdot q \)</div>
+        <div class="formula-vars"><code>p</code> pressió (Pa) · <code>q</code> cabal (m³/s)</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>Conversió de cabals: 1 L/s = 10⁻³ m³/s; 1 L/min = 1/60000 m³/s.</li>
+            <li>Conversió de pressions: 1 MPa = 10⁶ Pa; 1 bar = 10⁵ Pa.</li>
+            <li>Rendiment del cilindre: \( \eta = P_{mec} / P_h = F \cdot v / (p \cdot q) \)</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Tensió a la tija</div>
+      <div class="formula-item">
+        <div class="formula-name">Tensió normal a compressió de la tija</div>
+        <div class="formula-math">\( \sigma = \frac{F}{S_{tija}} = \frac{F}{\pi d_{tija}^2 / 4} \)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       SÒLID-RÍGID
+  ══════════════════════════════════════ -->
+  <div id="cat-solid" class="cat-section">
+    <div class="cat-header-bar">
+      <div class="cat-color-bar" style="background:var(--c-solid)"></div>
+      <h2>Sòlid-rígid (estàtica de màquines)</h2>
+    </div>
+    <p class="cat-desc-text">Equilibri estàtic de sòlids rígids: sumatori de forces i moments, reaccions en suports, tensió en cables i barres.</p>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Condicions d'equilibri estàtic</div>
+      <div class="formula-item">
+        <div class="formula-name">Equilibri de forces i moments</div>
+        <div class="formula-math">\( \sum F_x = 0 \qquad \sum F_y = 0 \qquad \sum M_O = 0 \)</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>Tria el punt de moments de manera que elimini les incògnites que no t'interessen (normalment el punt on actuen més forces desconegudes).</li>
+            <li>Estableix un criteri de signe per als moments (p. ex. antihorari = positiu) i mantín-lo.</li>
+            <li>En problemes amb peces articulades, el sumatori de moments en el punt d'articulació elimina les reaccions d'aquest punt.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Massa d'un sòlid</div>
+        <div class="formula-math">\( m = \rho \cdot V \)</div>
+        <div class="formula-vars"><code>ρ</code> densitat (kg/m³) · <code>V</code> volum (m³)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══════════════════════════════════════
+       TERMODINÀMICA
+  ══════════════════════════════════════ -->
+  <div id="cat-termo" class="cat-section">
+    <div class="cat-header-bar">
+      <div class="cat-color-bar" style="background:var(--c-termo)"></div>
+      <h2>Termodinàmica</h2>
+    </div>
+    <p class="cat-desc-text">Motors de combustió interna (cilindrada, cicles), rendiment tèrmic, consum de combustible i centrals tèrmiques.</p>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Motors de combustió interna</div>
+      <div class="formula-item">
+        <div class="formula-name">Cilindrada total</div>
+        <div class="formula-math">\( V_{total} = \frac{\pi d^2}{4} \cdot c \cdot n_{cil} \)</div>
+        <div class="formula-vars"><code>d</code> diàmetre del cilindre (m) · <code>c</code> cursa del pistó (m) · <code>n_cil</code> nombre de cilindres</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>Si la cilindrada és en cm³ i les dimensions en mm, cal dividir el resultat per 1000.</li>
+            <li>Als problemes, sovint donen la cilindrada total i demanen d o c o n_cil: aïlla la incògnita.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Potència tèrmica consumida</div>
+        <div class="formula-math">\( P_{cons} = \frac{p_c \cdot \rho \cdot q}{t} = p_c \cdot \dot{m} \)</div>
+        <div class="formula-vars"><code>p_c</code> poder calorífic (J/kg) · <code>ρ</code> densitat del combustible (kg/L) · <code>q</code> volum consumit (L) · <code>ṁ</code> cabal màssic (kg/s)</div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Rendiment tèrmic</div>
+        <div class="formula-math">\( \eta = \frac{P_{útil}}{P_{cons}} \)</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>En centrals de cicle combinat: \( \eta_{total} = \eta_{gas} + \eta_{vapor} \cdot (1 - \eta_{gas}) \)</li>
+            <li>La potència dissipada al cicle de gas: \( P_{diss,cg} = P_{cons} \cdot (1 - \eta_g) \)</li>
+            <li>El rendiment del cicle de vapor s'aplica sobre l'energia residual del cicle de gas.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="formula-group">
+      <div class="formula-group-title">Consum de combustible en vehicles</div>
+      <div class="formula-item">
+        <div class="formula-name">Consum en L/(100 km)</div>
+        <div class="formula-math">\( c_{100} = \frac{V_{combustible}}{d} \cdot 100 \quad \text{o} \quad c_{100} = \frac{\dot{m}}{\rho \cdot v} \cdot 100000 \)</div>
+        <div class="formula-vars"><code>V</code> volum (L) · <code>d</code> distància (km) · <code>v</code> velocitat (km/h)</div>
+      </div>
+      <div class="formula-item">
+        <div class="formula-name">Distància màxima amb un dipòsit</div>
+        <div class="formula-math">\( d_{màx} = \frac{V_{dipòsit} \cdot \rho}{c_{màssic}} \cdot d_{recorregut} \)</div>
+        <button class="note-toggle" onclick="toggle(this)">💬 Comentaris</button>
+        <div class="note-content">
+          <ul>
+            <li>Converteix sempre a les mateixes unitats abans d'operar.</li>
+            <li>Si el dipòsit s'omple al X%, usa V_efectiu = V_dipòsit · X/100.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    PAU Tecnologia i Enginyeria · Catalunya · Formulari actualitzat amb exàmens de 2016, 2017 i 2018
+  </footer>
+
+</main>
+
+<script>
+  function showCat(id) {
+    document.querySelectorAll('.cat-section').forEach(s => s.classList.remove('active'));
+    document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+    document.getElementById('cat-' + id).classList.add('active');
+    event.currentTarget.classList.add('active');
+  }
+
+  function toggle(btn) {
+    const note = btn.nextElementSibling;
+    const visible = note.classList.toggle('visible');
+    btn.textContent = visible ? '🔼 Amaga' : '💬 Comentaris';
+  }
+</script>
+
+</body>
+</html>
