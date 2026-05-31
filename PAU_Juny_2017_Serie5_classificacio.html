@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PAU Juny 2017 – Sèrie 5 · Classificació</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2e3248;
+    --accent: #e8c547;
+    --accent2: #5b8dee;
+    --text: #dde1f0;
+    --muted: #7a80a0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    padding: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  header {
+    border-left: 4px solid var(--accent);
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  header .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  header h1 {
+    font-size: 1.9rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  header h2 {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--muted);
+    margin-top: 0.2rem;
+  }
+
+  .pdf-links {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .pdf-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 5px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: opacity 0.15s;
+  }
+
+  .pdf-btn:hover { opacity: 0.8; }
+
+  .pdf-btn.preguntes {
+    background: rgba(91,141,238,0.15);
+    color: #5b8dee;
+    border: 1px solid rgba(91,141,238,0.4);
+  }
+
+  .pdf-btn.solucions {
+    background: rgba(126,201,138,0.15);
+    color: #7ec98a;
+    border: 1px solid rgba(126,201,138,0.4);
+  }
+
+  .pdf-icon { font-size: 1rem; }
+
+  .note {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent2);
+    border-radius: 6px;
+    padding: 0.9rem 1.2rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+  }
+
+  section { margin-bottom: 2.5rem; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-header h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .part-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    background: rgba(232,197,71,0.1);
+    border: 1px solid rgba(232,197,71,0.3);
+    border-radius: 3px;
+    padding: 0.15rem 0.5rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+
+  thead tr { background: var(--surface); }
+
+  thead th {
+    padding: 0.7rem 1rem;
+    text-align: left;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 2px solid var(--border);
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+
+  tbody tr:hover { background: var(--surface); }
+
+  tbody td {
+    padding: 0.75rem 1rem;
+    vertical-align: top;
+  }
+
+  .ref {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent2);
+    white-space: nowrap;
+  }
+
+  .ref a {
+    color: var(--accent2);
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(91,141,238,0.4);
+  }
+
+  .ref a:hover { border-bottom-style: solid; }
+
+  .tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.55rem;
+    border-radius: 3px;
+    white-space: nowrap;
+    margin: 0.1rem 0.1rem 0.1rem 0;
+  }
+
+  .tag-motors  { background: rgba(92,224,200,0.12);  color: #5ce0c8; border: 1px solid rgba(92,224,200,0.3); }
+  .tag-mat     { background: rgba(126,201,138,0.12); color: #7ec98a; border: 1px solid rgba(126,201,138,0.3); }
+  .tag-metro   { background: rgba(232,197,71,0.12);  color: #e8c547; border: 1px solid rgba(232,197,71,0.3); }
+  .tag-digital { background: rgba(91,141,238,0.12);  color: #5b8dee; border: 1px solid rgba(91,141,238,0.3); }
+  .tag-elec-cc { background: rgba(224,92,92,0.12);   color: #e05c5c; border: 1px solid rgba(224,92,92,0.3); }
+  .tag-mec     { background: rgba(201,126,201,0.12); color: #c97ec9; border: 1px solid rgba(201,126,201,0.3); }
+  .tag-hidro   { background: rgba(100,160,220,0.12); color: #64a0dc; border: 1px solid rgba(100,160,220,0.3); }
+  .tag-termo   { background: rgba(224,122,122,0.12); color: #e07a7a; border: 1px solid rgba(224,122,122,0.3); }
+  .tag-mat2    { background: rgba(126,201,138,0.12); color: #7ec98a; border: 1px solid rgba(126,201,138,0.3); }
+
+  .dual-note {
+    font-size: 0.72rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 0.25rem;
+  }
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="label">Tecnologia Industrial · PAU Catalunya</div>
+  <h1>Juny 2017 — Sèrie 5</h1>
+  <h2>Classificació per categories temàtiques</h2>
+</header>
+
+<div class="pdf-links">
+  <a class="pdf-btn preguntes" href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=5" target="_blank">
+    <span class="pdf-icon">📄</span> Preguntes (Sèrie 5)
+  </a>
+  <a class="pdf-btn solucions" href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017_Solucions.pdf#page=3" target="_blank">
+    <span class="pdf-icon">✅</span> Solucions (Sèrie 5)
+  </a>
+</div>
+
+<div class="note">
+  ⚑ Els exercicis marcats amb dues categories apareixeran a les dues seccions de l'índex final.
+</div>
+
+<section>
+  <div class="section-header">
+    <span class="part-label">PRIMERA PART</span>
+    <h3>Exercici 1 — Qüestions tipus test</h3>
+  </div>
+  <table>
+    <thead><tr><th>Referència</th><th>Resum de l'enunciat</th><th>Categoria</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=5" target="_blank">Juny 2017 · S5 · Ex1 · Q1</a></td>
+        <td class="enunciat">Percentatge d'ocupació mitjana d'un tren d'alta velocitat (3,2M passatgers/any, 8 vagons, 405 places, 28 trajectes/dia)</td>
+        <td><span class="tag tag-mat">Matemàtiques aplicades</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=5" target="_blank">Juny 2017 · S5 · Ex1 · Q2</a></td>
+        <td class="enunciat">Vehicles que no superen la ITV a Catalunya: 2,931M vehicles, 82% passen la 1a revisió; dels que fallen, 85% passen la 2a</td>
+        <td><span class="tag tag-mat">Matemàtiques aplicades</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=6" target="_blank">Juny 2017 · S5 · Ex1 · Q3</a></td>
+        <td class="enunciat">Longitud de fil de constantà (R=4,7 Ω, d=0,61 mm, ρ=0,49 µΩ·m)</td>
+        <td><span class="tag tag-elec-cc">Electricitat CC</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=6" target="_blank">Juny 2017 · S5 · Ex1 · Q4</a></td>
+        <td class="enunciat">Comparació de tres transports (marítim 0,87€/km, carretera 1,69€/km, ferroviari 1,03€/km; velocitats 33, 35 i 50 km/h; distàncies 1760, 1050 i 1160 km): quin és més ràpid i més econòmic?</td>
+        <td><span class="tag tag-mat">Matemàtiques aplicades</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=6" target="_blank">Juny 2017 · S5 · Ex1 · Q5</a></td>
+        <td class="enunciat">Velocitat de sincronisme d'un motor asíncron en canviar de xarxa (750 min⁻¹ a 50 Hz / 230 V → nova xarxa a 60 Hz / 120 V)</td>
+        <td><span class="tag tag-motors">Motors - Generadors elèctrics</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<section>
+  <div class="section-header">
+    <span class="part-label">PRIMERA PART</span>
+    <h3>Exercici 2 — Sistema lògic</h3>
+  </div>
+  <table>
+    <thead><tr><th>Referència</th><th>Resum de l'enunciat</th><th>Categoria</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=6" target="_blank">Juny 2017 · S5 · Ex2</a></td>
+        <td class="enunciat">Cotxe amb 4 cilindres: desconnectar 2 si velocitat motor entre 1400–4000 min⁻¹ I demanda actual baixa I darrer km demanda baixa. Taula de veritat, funció lògica simplificada i esquema de contactes.</td>
+        <td><span class="tag tag-digital">Electrònica digital</span><span class="tag tag-termo">Termodinàmica</span><span class="dual-note">↑ doble categoria</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<section>
+  <div class="section-header">
+    <span class="part-label">SEGONA PART · OPCIÓ A</span>
+    <h3>Exercicis 3 i 4</h3>
+  </div>
+  <table>
+    <thead><tr><th>Referència</th><th>Resum de l'enunciat</th><th>Categoria</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=7" target="_blank">Juny 2017 · S5 · OpA · Ex3</a></td>
+        <td class="enunciat">Cartell lluminós PAU amb tub lluminós (P_tub=60 W/m, U=230 V): longituds de P, A i U; potències consumides; energia en t=3 h per dues seqüències d'il·luminació (P-A-U i P-A-U-A)</td>
+        <td><span class="tag tag-elec-cc">Electricitat CC</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=7" target="_blank">Juny 2017 · S5 · OpA · Ex4</a></td>
+        <td class="enunciat">Ascensor amb contrapès (m_c=320 kg, m_cp=120 kg, v_c=1 m/s, η=0,82, n=6 cintes s=30×2,5 mm²): potència mecànica, potència elèctrica, massa per potència nul·la, tensió normal màxima de les cintes</td>
+        <td><span class="tag tag-mec">Energia - Potència - Mecanismes</span><span class="tag tag-solid">Sòlid-rígid (estàtica)</span><span class="dual-note">↑ doble categoria</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<section>
+  <div class="section-header">
+    <span class="part-label">SEGONA PART · OPCIÓ B</span>
+    <h3>Exercicis 3 i 4</h3>
+  </div>
+  <table>
+    <thead><tr><th>Referència</th><th>Resum de l'enunciat</th><th>Categoria</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=8" target="_blank">Juny 2017 · S5 · OpB · Ex3</a></td>
+        <td class="enunciat">Potenciòmetre lineal per mesurar distàncies (U_e=24 V, R=5 kΩ, R₁ variable): intensitat I, tensió de sortida U_s per R₁=2 kΩ, corba U_s(R₁), factor de sensibilitat k (calibrat 150 mm a 1200 mm)</td>
+        <td><span class="tag tag-elec-cc">Electricitat CC</span><span class="tag tag-metro">Metrologia i normalització</span><span class="dual-note">↑ doble categoria</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=8" target="_blank">Juny 2017 · S5 · OpB · Ex4</a></td>
+        <td class="enunciat">Central elèctrica de cicle combinat (gas natural + vapor, p=32,1 MJ/kg, ρ=0,423 kg/L, V=4515 m³/24h, P_elèc=390 MW): potència consumida, rendiment total η i rendiment del cicle de gas η_g (η_v=0,31)</td>
+        <td><span class="tag tag-termo">Termodinàmica</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+<footer>
+  Generat automàticament · PAU Tecnologia Industrial · Juny 2017 — Sèrie 5
+</footer>
+</body>
+</html>
