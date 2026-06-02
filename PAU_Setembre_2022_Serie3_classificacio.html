@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PAU Setembre 2022 — Sèrie 3 · Classificació</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2e3248;
+    --accent: #e8c547;
+    --accent2: #5b8dee;
+    --text: #dde1f0;
+    --muted: #7a80a0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    padding: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  header { border-left: 4px solid var(--accent); padding-left: 1.5rem; margin-bottom: 2rem; }
+  header .label { font-family: 'IBM Plex Mono', monospace; font-size: 0.75rem; color: var(--muted); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.4rem; }
+  header h1 { font-size: 1.9rem; font-weight: 600; color: var(--accent); }
+  header h2 { font-size: 1.1rem; font-weight: 300; color: var(--muted); margin-top: 0.2rem; }
+
+  .pdf-links { display: flex; gap: 1rem; margin-bottom: 2.5rem; flex-wrap: wrap; }
+  .pdf-btn { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.55rem 1.1rem; border-radius: 5px; font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; font-weight: 600; text-decoration: none; letter-spacing: 0.04em; transition: opacity 0.15s; }
+  .pdf-btn:hover { opacity: 0.8; }
+  .pdf-btn.preguntes { background: rgba(91,141,238,0.15); color: #5b8dee; border: 1px solid rgba(91,141,238,0.4); }
+  .pdf-btn.solucions { background: rgba(126,201,138,0.15); color: #7ec98a; border: 1px solid rgba(126,201,138,0.4); }
+  .pdf-icon { font-size: 1rem; }
+
+  .note { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent2); border-radius: 6px; padding: 0.9rem 1.2rem; font-size: 0.85rem; color: var(--muted); margin-bottom: 2.5rem; }
+
+  section { margin-bottom: 2.5rem; }
+  .section-header { display: flex; align-items: center; gap: 1rem; margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+  .section-header h3 { font-family: 'IBM Plex Mono', monospace; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+  .part-label { font-family: 'IBM Plex Mono', monospace; font-size: 0.7rem; color: var(--accent); background: rgba(232,197,71,0.1); border: 1px solid rgba(232,197,71,0.3); border-radius: 3px; padding: 0.15rem 0.5rem; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+  thead tr { background: var(--surface); }
+  thead th { padding: 0.7rem 1rem; text-align: left; font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); border-bottom: 2px solid var(--border); }
+  tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+  tbody tr:hover { background: var(--surface); }
+  tbody td { padding: 0.75rem 1rem; vertical-align: top; }
+
+  .ref { font-family: 'IBM Plex Mono', monospace; font-size: 0.78rem; color: var(--accent2); white-space: nowrap; }
+  .ref a { color: var(--accent2); text-decoration: none; border-bottom: 1px dashed rgba(91,141,238,0.4); }
+  .ref a:hover { border-bottom-style: solid; }
+
+  .tag { display: inline-block; font-family: 'IBM Plex Mono', monospace; font-size: 0.68rem; font-weight: 600; letter-spacing: 0.05em; padding: 0.2rem 0.55rem; border-radius: 3px; white-space: nowrap; margin: 0.1rem 0.1rem 0.1rem 0; }
+  .tag-motors  { background: rgba(92,224,200,0.12);  color: #5ce0c8; border: 1px solid rgba(92,224,200,0.3); }
+  .tag-mat     { background: rgba(126,201,138,0.12); color: #7ec98a; border: 1px solid rgba(126,201,138,0.3); }
+  .tag-metro   { background: rgba(232,197,71,0.12);  color: #e8c547; border: 1px solid rgba(232,197,71,0.3); }
+  .tag-digital { background: rgba(91,141,238,0.12);  color: #5b8dee; border: 1px solid rgba(91,141,238,0.3); }
+  .tag-elec-cc { background: rgba(224,92,92,0.12);   color: #e05c5c; border: 1px solid rgba(224,92,92,0.3); }
+  .tag-mec     { background: rgba(201,126,201,0.12); color: #c97ec9; border: 1px solid rgba(201,126,201,0.3); }
+  .tag-hidro   { background: rgba(100,160,220,0.12); color: #64a0dc; border: 1px solid rgba(100,160,220,0.3); }
+  .tag-termo   { background: rgba(224,122,122,0.12); color: #e07a7a; border: 1px solid rgba(224,122,122,0.3); }
+  .tag-mat2    { background: rgba(212,168,83,0.12);  color: #d4a853; border: 1px solid rgba(212,168,83,0.3); }
+  .tag-solid   { background: rgba(201,160,110,0.12); color: #c9a06e; border: 1px solid rgba(201,160,110,0.3); }
+  .dual-note { font-size: 0.72rem; color: var(--muted); font-style: italic; margin-top: 0.25rem; }
+
+  footer { margin-top: 3rem; padding-top: 1rem; border-top: 1px solid var(--border); font-family: 'IBM Plex Mono', monospace; font-size: 0.72rem; color: var(--muted); text-align: center; }
+</style>
+</head>
+<body>
+<header>
+  <div class="label">Tecnologia i Enginyeria · PAU Catalunya</div>
+  <h1>Setembre 2022 — Sèrie 3</h1>
+  <h2>Classificació per categories temàtiques</h2>
+</header>
+<div class="pdf-links">
+  <a class="pdf-btn preguntes" href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2022.pdf#page=1" target="_blank">
+    <span class="pdf-icon">📄</span> Preguntes (Sèrie 3)
+  </a>
+  <a class="pdf-btn solucions" href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2022_Solucions.pdf#page=1" target="_blank">
+    <span class="pdf-icon">✅</span> Solucions (Sèrie 3)
+  </a>
+</div>
+<div class="note">⚑ A partir de 2019, l'examen consta de 6 exercicis independents dels quals l'alumne en respon 4. Els exercicis marcats amb dues categories apareixeran a les dues seccions de l'índex.</div>
+
+<section>
+  <div class="section-header">
+    <span class="part-label">EXERCICI</span>
+    <h3>Ex1 — Test (5 qüestions)</h3>
+  </div>
+  <table>
+    <thead><tr><th>Referència</th><th>Resum de l'enunciat</th><th>Categoria</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2022.pdf#page=2" target="_blank">Setembre 2022 · S3 · Ex1 · Q1</a></td>
+        <td>Quatre provetes normalitzades (alumini, molibdè, níquel, plata) en assaig de tracció. Quin material es deformarà menys per un mateix esforç? (basant-se en el mòdul d'elasticitat).</td>
+        <td><span class="tag tag-mat2">Materials - Prop. i assaigs</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2022.pdf#page=2" target="_blank">Setembre 2022 · S3 · Ex1 · Q2</a></td>
+        <td>Unitats correctes per expressar l'energia elèctrica consumida en una llar (kW/h, kW·h, J/s o J/h).</td>
+        <td><span class="tag tag-mat">Matemàtiques aplicades</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2022.pdf#page=2" target="_blank">Setembre 2022 · S3 · Ex1 · Q3</a></td>
+        <td>Dues resistències en sèrie (110 Ω i 330 Ω, tolerància ±5%). Resistència màxima i mínima equivalent del conjunt.</td>
+        <td><span class="tag tag-metro">Metrologia i normalització</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2022.pdf#page=3" target="_blank">Setembre 2022 · S3 · Ex1 · Q4</a></td>
+        <td>Cafetera escalfa 75 mL d'aigua (T_a=21°C→88°C en 20 s, c_e=4,187 J/g·K). Potència necessària.</td>
+        <td><span class="tag tag-termo">Termodinàmica</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2022.pdf#page=3" target="_blank">Setembre 2022 · S3 · Ex1 · Q5</a></td>
+        <td>Terrassa bar: 5 estufes de gas butà (800 g/h cada una, 9 h/dia, FE=2,96 kg CO₂/kg butà). Petjada de carboni diària de les 5 estufes.</td>
+        <td><span class="tag tag-termo">Termodinàmica</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <div class="section-header">
+    <span class="part-label">EXERCICI</span>
+    <h3>Ex2</h3>
+  </div>
+  <table>
+    <thead><tr><th>Referència</th><th>Resum de l'enunciat</th><th>Categoria</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2022.pdf#page=4" target="_blank">Setembre 2022 · S3 · Ex2</a></td>
+        <td>Sistema digital amb esquema de portes donat (NOT·OR·OR·AND·OR → S, 4 entrades a,b,c,d). Funció lògica simplificada (S = b̄ + c̄ + d̄), taula de veritat, esquema de contactes de la funció simplificada.</td>
+        <td><span class="tag tag-digital">Electrònica digital</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <div class="section-header">
+    <span class="part-label">EXERCICI</span>
+    <h3>Ex3</h3>
+  </div>
+  <table>
+    <thead><tr><th>Referència</th><th>Resum de l'enunciat</th><th>Categoria</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2022.pdf#page=6" target="_blank">Setembre 2022 · S3 · Ex3</a></td>
+        <td>Muntacàrregues accionat per motor d'inducció monofàsic (U=230 V, cosφ=0,85, n_mot=1470 min⁻¹, τ=0,009, η=0,6). Eleva m=2000 kg, h=8 m en t=1,5 min. Velocitat sortida reductor ω_red, treball W, potència elèctrica P_elèc, intensitat I.</td>
+        <td><span class="tag tag-motors">Motors - Generadors elèctrics</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <div class="section-header">
+    <span class="part-label">EXERCICI</span>
+    <h3>Ex4</h3>
+  </div>
+  <table>
+    <thead><tr><th>Referència</th><th>Resum de l'enunciat</th><th>Categoria</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2022.pdf#page=8" target="_blank">Setembre 2022 · S3 · Ex4</a></td>
+        <td>Automòbil (n_c=6 cilindres, s=91 mm, d=83 mm, rc=12, P_mec=20 kW, n=3000 min⁻¹, c=6,5 L/h benzina, p_c=42000 kJ/kg, ρ=0,8 kg/L). Cilindrada total V, parell Γ, potència tèrmica P_tèrm, rendiment η del motor.</td>
+        <td><span class="tag tag-termo">Termodinàmica</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <div class="section-header">
+    <span class="part-label">EXERCICI</span>
+    <h3>Ex5</h3>
+  </div>
+  <table>
+    <thead><tr><th>Referència</th><th>Resum de l'enunciat</th><th>Categoria</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2022.pdf#page=10" target="_blank">Setembre 2022 · S3 · Ex5</a></td>
+        <td>Mecanisme elevar taulell taula (barres AB i CD massa negligible, taulell 3L, m=4 kg, L=150 mm, φ=60°). Força F vertical al punt O. Diagrama de cos lliure del taulell, valor de F, forces F_AB i F_CD (tracció o compressió).</td>
+        <td><span class="tag tag-solid">Sòlid-rígid (estàtica)</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <div class="section-header">
+    <span class="part-label">EXERCICI</span>
+    <h3>Ex6</h3>
+  </div>
+  <table>
+    <thead><tr><th>Referència</th><th>Resum de l'enunciat</th><th>Categoria</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2022.pdf#page=12" target="_blank">Setembre 2022 · S3 · Ex6</a></td>
+        <td>7 estufes elèctriques en paral·lel (P₁=900 W, U₁=230 V). Corrent per estufa I_i i corrent total I, resistència R de cada estufa, potència P₂ de cada estufa si s'alimentés a U₂=125 V.</td>
+        <td><span class="tag tag-elec-cc">Electricitat DC</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<footer>Generat automàticament · PAU Tecnologia i Enginyeria · Setembre 2022 — Sèrie 3</footer>
+</body>
+</html>
