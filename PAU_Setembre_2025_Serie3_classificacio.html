@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PAU Setembre 2025 — Sèrie 3 · Classificació</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
+  :root{--bg:#0f1117;--surface:#1a1d27;--border:#2e3248;--accent:#e8c547;--accent2:#5b8dee;--text:#dde1f0;--muted:#7a80a0;}
+  *{box-sizing:border-box;margin:0;padding:0;}
+  body{background:var(--bg);color:var(--text);font-family:'IBM Plex Sans',sans-serif;font-weight:300;line-height:1.6;padding:2rem;max-width:1100px;margin:0 auto;}
+  header{border-left:4px solid var(--accent);padding-left:1.5rem;margin-bottom:2rem;}
+  header .label{font-family:'IBM Plex Mono',monospace;font-size:0.75rem;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;margin-bottom:.4rem;}
+  header h1{font-size:1.9rem;font-weight:600;color:var(--accent);}
+  header h2{font-size:1.1rem;font-weight:300;color:var(--muted);margin-top:.2rem;}
+  .pdf-links{display:flex;gap:1rem;margin-bottom:2.5rem;flex-wrap:wrap;}
+  .pdf-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.55rem 1.1rem;border-radius:5px;font-family:'IBM Plex Mono',monospace;font-size:.78rem;font-weight:600;text-decoration:none;letter-spacing:.04em;transition:opacity .15s;}
+  .pdf-btn:hover{opacity:.8;}
+  .pdf-btn.preguntes{background:rgba(91,141,238,.15);color:#5b8dee;border:1px solid rgba(91,141,238,.4);}
+  .pdf-btn.solucions{background:rgba(126,201,138,.15);color:#7ec98a;border:1px solid rgba(126,201,138,.4);}
+  .note{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:6px;padding:.9rem 1.2rem;font-size:.85rem;color:var(--muted);margin-bottom:2.5rem;}
+  section{margin-bottom:2.5rem;}
+  .section-header{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;padding-bottom:.5rem;border-bottom:1px solid var(--border);}
+  .section-header h3{font-family:'IBM Plex Mono',monospace;font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);}
+  .part-label{font-family:'IBM Plex Mono',monospace;font-size:.7rem;color:var(--accent);background:rgba(232,197,71,.1);border:1px solid rgba(232,197,71,.3);border-radius:3px;padding:.15rem .5rem;}
+  table{width:100%;border-collapse:collapse;font-size:.88rem;}
+  thead tr{background:var(--surface);}
+  thead th{padding:.7rem 1rem;text-align:left;font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);border-bottom:2px solid var(--border);}
+  tbody tr{border-bottom:1px solid var(--border);transition:background .15s;}
+  tbody tr:hover{background:var(--surface);}
+  tbody td{padding:.75rem 1rem;vertical-align:top;}
+  .ref{font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--accent2);white-space:nowrap;}
+  .ref a{color:var(--accent2);text-decoration:none;border-bottom:1px dashed rgba(91,141,238,.4);}
+  .ref a:hover{border-bottom-style:solid;}
+  .tag{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.68rem;font-weight:600;letter-spacing:.05em;padding:.2rem .55rem;border-radius:3px;white-space:nowrap;margin:.1rem .1rem .1rem 0;}
+  .tag-motors{background:rgba(92,224,200,.12);color:#5ce0c8;border:1px solid rgba(92,224,200,.3);}
+  .tag-metro{background:rgba(232,197,71,.12);color:#e8c547;border:1px solid rgba(232,197,71,.3);}
+  .tag-digital{background:rgba(91,141,238,.12);color:#5b8dee;border:1px solid rgba(91,141,238,.3);}
+  .tag-elec-cc{background:rgba(224,92,92,.12);color:#e05c5c;border:1px solid rgba(224,92,92,.3);}
+  .tag-elec-ac{background:rgba(224,148,58,.12);color:#e0943a;border:1px solid rgba(224,148,58,.3);}
+  .tag-mec{background:rgba(201,126,201,.12);color:#c97ec9;border:1px solid rgba(201,126,201,.3);}
+  .tag-termo{background:rgba(224,122,122,.12);color:#e07a7a;border:1px solid rgba(224,122,122,.3);}
+  .tag-mat2{background:rgba(212,168,83,.12);color:#d4a853;border:1px solid rgba(212,168,83,.3);}
+  .tag-solid{background:rgba(201,160,110,.12);color:#c9a06e;border:1px solid rgba(201,160,110,.3);}
+  .dual-note{font-size:.72rem;color:var(--muted);font-style:italic;margin-top:.25rem;}
+  footer{margin-top:3rem;padding-top:1rem;border-top:1px solid var(--border);font-family:'IBM Plex Mono',monospace;font-size:.72rem;color:var(--muted);text-align:center;}
+</style>
+</head>
+<body>
+<header>
+  <div class="label">Tecnologia i Enginyeria · PAU Catalunya</div>
+  <h1>Setembre 2025 — Sèrie 3</h1>
+  <h2>Classificació per categories temàtiques</h2>
+</header>
+<div class="pdf-links">
+  <a class="pdf-btn preguntes" href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=1" target="_blank"><span>📄</span> Preguntes (Sèrie 3)</a>
+  <a class="pdf-btn solucions" href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025_Solucions.pdf#page=1" target="_blank"><span>✅</span> Solucions (Sèrie 3)</a>
+</div>
+<div class="note">⚑ A partir de 2025, l'examen consta de QUATRE exercicis obligatoris (2,5 punts cadascun). L'Exercici 1 és test de 8 qüestions de les quals l'alumne en respon 5. Els exercicis marcats amb dues categories apareixeran a les dues seccions de l'índex.</div>
+
+<section>
+  <div class="section-header"><span class="part-label">EXERCICI</span><h3>Ex1 — Test (5 de 8 qüestions)</h3></div>
+  <table>
+    <thead><tr><th>Referència</th><th>Resum de l'enunciat</th><th>Categoria</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=2" target="_blank">Setembre 2025 · S3 · Ex1 · Q1</a></td>
+        <td>Cotxe elèctric (consum 129,6 MJ per 200 km, electricitat a 0,23 €/(kWh)): cost per kilòmetre</td>
+        <td><span class="tag tag-mec">Energia · Potència · Mecanismes</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=2" target="_blank">Setembre 2025 · S3 · Ex1 · Q2</a></td>
+        <td>Assaig de tracció: corbes tensió-deformació de dos acers (A i B). Determinació de quin és més dúctil a partir de la figura</td>
+        <td><span class="tag tag-mat2">Materials · Prop. i assaigs</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=2" target="_blank">Setembre 2025 · S3 · Ex1 · Q3</a></td>
+        <td>Termòmetre digital (resolució 0,1°C, precisió ±0,3°C, lectura 25,4°C). Rang de temperatures en què es troba el valor real</td>
+        <td><span class="tag tag-metro">Metrologia i normalització</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=2" target="_blank">Setembre 2025 · S3 · Ex1 · Q4</a></td>
+        <td>Dues resistències 120 Ω i 240 Ω en paral·lel, tolerància ±2% cadascuna. Valor mínim possible de la resistència equivalent del circuit</td>
+        <td><span class="tag tag-elec-cc">Electricitat DC</span><span class="tag tag-metro">Metrologia i normalització</span><div class="dual-note">↑ doble categoria</div></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=3" target="_blank">Setembre 2025 · S3 · Ex1 · Q5</a></td>
+        <td>Ajust 30 G7/h6 (tolerància forat +28/+7 µm, tolerància eix 0/−13 µm). Joc màxim possible</td>
+        <td><span class="tag tag-metro">Metrologia i normalització</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=3" target="_blank">Setembre 2025 · S3 · Ex1 · Q6</a></td>
+        <td>Motor de corrent continu (U_N=24 V, I_N=3,47 A, P_N=60 W, n_N=8500 min⁻¹). Parell nominal del motor</td>
+        <td><span class="tag tag-motors">Motors · Generadors elèctrics</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=3" target="_blank">Setembre 2025 · S3 · Ex1 · Q7</a></td>
+        <td>Central tèrmica de carbó (eficiència 38%, p_c=29 MJ/kg): kilograms de carbó necessaris per produir 1 MWh d'electricitat</td>
+        <td><span class="tag tag-termo">Termodinàmica</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=3" target="_blank">Setembre 2025 · S3 · Ex1 · Q8</a></td>
+        <td>Instal·lació monofàsica (U=230 V, impedància equivalent Z=3,4+j1,2 Ω). Valor de la potència aparent S</td>
+        <td><span class="tag tag-elec-ac">Electricitat AC</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <div class="section-header"><span class="part-label">EXERCICI</span><h3>Ex2</h3></div>
+  <table>
+    <thead><tr><th>Referència</th><th>Resum de l'enunciat</th><th>Categoria</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=4" target="_blank">Setembre 2025 · S3 · Ex2</a></td>
+        <td>Classificació de diamants sintètics per mida (sensors alçada alta a, mitjana m, baixa b) i pes p (>3 quirats). Criteri de rebuig: gran o mitjà sense prou pes, molt petit sempre. Sistema de control (r=1: rebutja). Taula de veritat (16 files), funció lògica simplificada r=m̄p̄+mp̄+b̄+am̄, esquema de contactes</td>
+        <td><span class="tag tag-digital">Electrònica digital</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <div class="section-header"><span class="part-label">EXERCICI</span><h3>Ex3</h3></div>
+  <table>
+    <thead><tr><th>Referència</th><th>Resum de l'enunciat</th><th>Categoria</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=6" target="_blank">Setembre 2025 · S3 · Ex3</a></td>
+        <td>Aeri de Montserrat (M=4900 kg a plena càrrega, h=544 m, t_v=5 min, P_cons=115 kW, 9 h/dia, c_e=0,21 €/(kWh)): treball mecànic W per pujada, potència subministrada P_subm, rendiment η, cost mensual de juny c_juny</td>
+        <td><span class="tag tag-mec">Energia · Potència · Mecanismes</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <div class="section-header"><span class="part-label">EXERCICI</span><h3>Ex4</h3></div>
+  <table>
+    <thead><tr><th>Referència</th><th>Resum de l'enunciat</th><th>Categoria</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=8" target="_blank">Setembre 2025 · S3 · Ex4</a></td>
+        <td>Guia OC de fusta (l=1 m, m_fusta=0,75 kg) articulada a la paret; tensor AB de fil de cotó (d_f=1,4 mm, σ=80 MPa, φ=30°, d=0,3 m); ampolla d'aigua (V=2 L) penjada a distància x. Diagrama de cos lliure, expressió T(x), T_màx que suporta el fil, x_màx per no trencar-lo</td>
+        <td><span class="tag tag-solid">Sòlid-rígid (estàtica)</span><span class="tag tag-mat2">Materials · Prop. i assaigs</span><div class="dual-note">↑ doble categoria</div></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<footer>Generat automàticament · PAU Tecnologia i Enginyeria · Setembre 2025 — Sèrie 3</footer>
+</body>
+</html>

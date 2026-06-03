@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PAU Juny 2024 — Sèrie 1 · Classificació</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&family=IBM+Plex+Sans:wght@300;400;600&display=swap');
+
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --border: #2e3248;
+    --accent: #e8c547;
+    --accent2: #5b8dee;
+    --text: #dde1f0;
+    --muted: #7a80a0;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'IBM Plex Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.6;
+    padding: 2rem;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  header {
+    border-left: 4px solid var(--accent);
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
+  }
+
+  header .label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    margin-bottom: 0.4rem;
+  }
+
+  header h1 {
+    font-size: 1.9rem;
+    font-weight: 600;
+    color: var(--accent);
+  }
+
+  header h2 {
+    font-size: 1.1rem;
+    font-weight: 300;
+    color: var(--muted);
+    margin-top: 0.2rem;
+  }
+
+  .pdf-links {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+  }
+
+  .pdf-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.55rem 1.1rem;
+    border-radius: 5px;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-decoration: none;
+    letter-spacing: 0.04em;
+    transition: opacity 0.15s;
+  }
+
+  .pdf-btn:hover { opacity: 0.8; }
+
+  .pdf-btn.preguntes {
+    background: rgba(91,141,238,0.15);
+    color: #5b8dee;
+    border: 1px solid rgba(91,141,238,0.4);
+  }
+
+  .pdf-btn.solucions {
+    background: rgba(126,201,138,0.15);
+    color: #7ec98a;
+    border: 1px solid rgba(126,201,138,0.4);
+  }
+
+  .pdf-icon { font-size: 1rem; }
+
+  .note {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-left: 3px solid var(--accent2);
+    border-radius: 6px;
+    padding: 0.9rem 1.2rem;
+    font-size: 0.85rem;
+    color: var(--muted);
+    margin-bottom: 2.5rem;
+  }
+
+  section { margin-bottom: 2.5rem; }
+
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .section-header h3 {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+
+  .part-label {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--accent);
+    background: rgba(232,197,71,0.1);
+    border: 1px solid rgba(232,197,71,0.3);
+    border-radius: 3px;
+    padding: 0.15rem 0.5rem;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.88rem;
+  }
+
+  thead tr { background: var(--surface); }
+
+  thead th {
+    padding: 0.7rem 1rem;
+    text-align: left;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    border-bottom: 2px solid var(--border);
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border);
+    transition: background 0.15s;
+  }
+
+  tbody tr:hover { background: var(--surface); }
+
+  tbody td {
+    padding: 0.75rem 1rem;
+    vertical-align: top;
+  }
+
+  .ref {
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent2);
+    white-space: nowrap;
+  }
+
+  .ref a {
+    color: var(--accent2);
+    text-decoration: none;
+    border-bottom: 1px dashed rgba(91,141,238,0.4);
+  }
+
+  .ref a:hover { border-bottom-style: solid; }
+
+  .tag {
+    display: inline-block;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.68rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 0.2rem 0.55rem;
+    border-radius: 3px;
+    white-space: nowrap;
+    margin: 0.1rem 0.1rem 0.1rem 0;
+  }
+
+  .tag-motors  { background: rgba(92,224,200,0.12);  color: #5ce0c8; border: 1px solid rgba(92,224,200,0.3); }
+  .tag-mat     { background: rgba(126,201,138,0.12); color: #7ec98a; border: 1px solid rgba(126,201,138,0.3); }
+  .tag-metro   { background: rgba(232,197,71,0.12);  color: #e8c547; border: 1px solid rgba(232,197,71,0.3); }
+  .tag-digital { background: rgba(91,141,238,0.12);  color: #5b8dee; border: 1px solid rgba(91,141,238,0.3); }
+  .tag-elec-cc { background: rgba(224,92,92,0.12);   color: #e05c5c; border: 1px solid rgba(224,92,92,0.3); }
+  .tag-elec-ac { background: rgba(224,148,58,0.12);  color: #e0943a; border: 1px solid rgba(224,148,58,0.3); }
+  .tag-mec     { background: rgba(201,126,201,0.12); color: #c97ec9; border: 1px solid rgba(201,126,201,0.3); }
+  .tag-hidro   { background: rgba(100,160,220,0.12); color: #64a0dc; border: 1px solid rgba(100,160,220,0.3); }
+  .tag-termo   { background: rgba(224,122,122,0.12); color: #e07a7a; border: 1px solid rgba(224,122,122,0.3); }
+  .tag-mat2    { background: rgba(212,168,83,0.12);  color: #d4a853; border: 1px solid rgba(212,168,83,0.3); }
+  .tag-solid   { background: rgba(201,160,110,0.12); color: #c9a06e; border: 1px solid rgba(201,160,110,0.3); }
+
+  .dual-note {
+    font-size: 0.72rem;
+    color: var(--muted);
+    font-style: italic;
+    margin-top: 0.25rem;
+  }
+
+  footer {
+    margin-top: 3rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border);
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.72rem;
+    color: var(--muted);
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="label">Tecnologia i Enginyeria · PAU Catalunya</div>
+  <h1>Juny 2024 — Sèrie 1</h1>
+  <h2>Classificació per categories temàtiques</h2>
+</header>
+<div class="pdf-links">
+  <a class="pdf-btn preguntes" href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024.pdf#page=1" target="_blank">
+    <span class="pdf-icon">📄</span> Preguntes (Sèrie 1)
+  </a>
+  <a class="pdf-btn solucions" href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024_Solucions.pdf#page=1" target="_blank">
+    <span class="pdf-icon">✅</span> Solucions (Sèrie 1)
+  </a>
+</div>
+<div class="note">⚑ A partir de 2019, l'examen consta de 6 exercicis independents dels quals l'alumne en respon 4. Els exercicis marcats amb dues categories apareixeran a les dues seccions de l'índex.</div>
+
+<section>
+  <div class="section-header">
+    <span class="part-label">EXERCICI</span>
+    <h3>Ex1 — Test (5 qüestions)</h3>
+  </div>
+  <table>
+    <thead><tr><th>Referència</th><th>Resum de l'enunciat</th><th>Categoria</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024.pdf#page=2" target="_blank">Juny 2024 · S1 · Ex1 · Q1</a></td>
+        <td>Motor benzina 4 temps (10,2 L/h, 4000 min⁻¹, ρ=0,8 kg/L): massa de combustible consumida en un cicle</td>
+        <td><span class="tag tag-termo">Termodinàmica</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024.pdf#page=2" target="_blank">Juny 2024 · S1 · Ex1 · Q2</a></td>
+        <td>Corbes tensió-deformació de dos acers (assaig de tracció): comparació del mòdul d'elasticitat a partir de la figura</td>
+        <td><span class="tag tag-mat2">Materials · Prop. i assaigs</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024.pdf#page=2" target="_blank">Juny 2024 · S1 · Ex1 · Q3</a></td>
+        <td>Resistència elèctrica proporciona 3000 J a 50 mL d'aigua a 5°C (c_e=4,18 kJ/kg·K): temperatura final de l'aigua</td>
+        <td><span class="tag tag-termo">Termodinàmica</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024.pdf#page=3" target="_blank">Juny 2024 · S1 · Ex1 · Q4</a></td>
+        <td>Habitatge amb 8 plaques solars (S=4,4 m², irradiació 13 kWh/m²/dia, η=0,3): energia produïda durant el mes de setembre</td>
+        <td><span class="tag tag-mec">Energia · Potència · Mecanismes</span></td>
+      </tr>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024.pdf#page=3" target="_blank">Juny 2024 · S1 · Ex1 · Q5</a></td>
+        <td>Motor motocicleta 4 temps (cursa 50,6 mm, diàmetre 56 mm, relació de compressió 7,3): volum de la cambra de combustió</td>
+        <td><span class="tag tag-termo">Termodinàmica</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <div class="section-header">
+    <span class="part-label">EXERCICI</span>
+    <h3>Ex2</h3>
+  </div>
+  <table>
+    <thead><tr><th>Referència</th><th>Resum de l'enunciat</th><th>Categoria</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024.pdf#page=4" target="_blank">Juny 2024 · S1 · Ex2</a></td>
+        <td>Control d'accés a edifici d'oficines: horari laboral (h), clau numèrica (c), targeta magnètica (t), empremta dactilar (e). Accés permès si h=1 amb qualsevol sistema, o si h=0 amb almenys dos sistemes. Taula de veritat, funció lògica i diagrama de portes</td>
+        <td><span class="tag tag-digital">Electrònica digital</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <div class="section-header">
+    <span class="part-label">EXERCICI</span>
+    <h3>Ex3</h3>
+  </div>
+  <table>
+    <thead><tr><th>Referència</th><th>Resum de l'enunciat</th><th>Categoria</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024.pdf#page=6" target="_blank">Juny 2024 · S1 · Ex3</a></td>
+        <td>Patinet elèctric (U=24 V, E_bat=250 Wh, η_mot=0,85, d_roda=140 mm, m=70 kg, v=8 km/h, α=7°): potència elèctrica consumida P_elèc, velocitat angular del motor ω_mot i parell Γ, percentatge d'energia consumida de la bateria Δ</td>
+        <td><span class="tag tag-motors">Motors · Generadors elèctrics</span><span class="tag tag-mec">Energia · Potència · Mecanismes</span><div class="dual-note">↑ doble categoria</div></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <div class="section-header">
+    <span class="part-label">EXERCICI</span>
+    <h3>Ex4</h3>
+  </div>
+  <table>
+    <thead><tr><th>Referència</th><th>Resum de l'enunciat</th><th>Categoria</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024.pdf#page=8" target="_blank">Juny 2024 · S1 · Ex4</a></td>
+        <td>Cotxe (m=1250 kg) propulsat per motor combustió interna (η=0,25) accelera fins a v=50 km/h (circuit horitzontal). Benzina (p_c=46 MJ/kg, ρ=0,72 g/cm³, FE=2,157 kg CO₂/L): treball mecànic W, massa benzina m_benz, petjada de CO₂ emesa</td>
+        <td><span class="tag tag-termo">Termodinàmica</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <div class="section-header">
+    <span class="part-label">EXERCICI</span>
+    <h3>Ex5</h3>
+  </div>
+  <table>
+    <thead><tr><th>Referència</th><th>Resum de l'enunciat</th><th>Categoria</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024.pdf#page=10" target="_blank">Juny 2024 · S1 · Ex5</a></td>
+        <td>Força del múscul tibial anterior per mantenir el peu en posició horitzontal elevat (articulació turmell O fixa, m=2,2 kg, a=30 mm, b=35 mm, c=40 mm, φ=9°): diagrama de cos lliure, força muscular F_m, forces a l'articulació O</td>
+        <td><span class="tag tag-solid">Sòlid-rígid (estàtica)</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <div class="section-header">
+    <span class="part-label">EXERCICI</span>
+    <h3>Ex6</h3>
+  </div>
+  <table>
+    <thead><tr><th>Referència</th><th>Resum de l'enunciat</th><th>Categoria</th></tr></thead>
+    <tbody>
+      <tr>
+        <td class="ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024.pdf#page=12" target="_blank">Juny 2024 · S1 · Ex6</a></td>
+        <td>Circuit RL en sèrie: font alterna sinusoïdal f=50 Hz, R₁=5 Ω, L₁=7 mH, wattímetre W₁=950 W. Reactància inductiva X_L, factor de potència cos φ, impedància equivalent Z, mesura amperímetre A₁, tensió eficaç d'alimentació U₁</td>
+        <td><span class="tag tag-elec-ac">Electricitat AC</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<footer>Generat automàticament · PAU Tecnologia i Enginyeria · Juny 2024 — Sèrie 1</footer>
+</body>
+</html>
