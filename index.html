@@ -166,6 +166,31 @@
     padding: 0.1rem 0.45rem;
   }
 
+  .nav-item-home {
+    border-left-color: var(--accent) !important;
+    background: rgba(232,197,71,0.09);
+    margin-bottom: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 0 4px 4px 0;
+  }
+
+  .nav-item-home:hover {
+    background: rgba(232,197,71,0.16) !important;
+  }
+
+  .nav-item-home-icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+    color: var(--accent);
+  }
+
+  .nav-item-home .nav-item-text {
+    font-size: 0.88rem;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 0.01em;
+  }
+
   /* ── MAIN CONTENT ── */
   #main {
     margin-left: 260px;
@@ -328,6 +353,69 @@
     vertical-align: middle;
   }
 
+  /* ── FORMULARI BTN ── */
+  .nav-formules-wrap {
+    padding: 0.8rem 1rem 1rem;
+    border-top: 1px solid var(--border);
+    margin-top: 0.4rem;
+  }
+
+  .nav-formules-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    padding: 0.6rem 0.9rem;
+    border-radius: 6px;
+    background: rgba(92,224,200,0.08);
+    border: 1px solid rgba(92,224,200,0.25);
+    text-decoration: none;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .nav-formules-btn:hover {
+    background: rgba(92,224,200,0.16);
+    border-color: rgba(92,224,200,0.5);
+  }
+
+  .nav-formules-icon {
+    font-size: 1rem;
+    flex-shrink: 0;
+  }
+
+  .nav-formules-text {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #5ce0c8;
+    flex: 1;
+    line-height: 1.2;
+  }
+
+  .nav-formules-arrow {
+    font-size: 0.75rem;
+    color: rgba(92,224,200,0.6);
+  }
+
+  /* ── ALSO-CAT TAG ── */
+  .also-cat {
+    display: block;
+    margin-top: 0.4rem;
+    font-family: 'IBM Plex Mono', monospace;
+    font-size: 0.67rem;
+    font-weight: 600;
+    padding: 0.15rem 0.5rem;
+    border-radius: 3px;
+    border: 1px solid;
+    background: rgba(255,255,255,0.04);
+    cursor: pointer;
+    transition: opacity 0.15s;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+  }
+
+  .also-cat:hover {
+    opacity: 0.75;
+  }
+
   /* ── WELCOME / ALL VIEW ── */
   #view-all .welcome {
     background: var(--surface);
@@ -335,6 +423,7 @@
     border-radius: 8px;
     padding: 2rem;
     margin-bottom: 2rem;
+    margin-top: 1.2rem;
   }
 
   #view-all .welcome h3 {
@@ -392,6 +481,13 @@
     font-weight: 600;
   }
 
+  .cat-desc {
+    font-size: 0.87rem;
+    color: var(--muted);
+    line-height: 1.55;
+    margin-bottom: 1.4rem;
+  }
+
   footer {
     margin-top: 3rem;
     padding-top: 1rem;
@@ -420,8 +516,8 @@
 
   <div class="sidebar-nav">
     <div class="nav-section-label">Índex</div>
-    <a class="nav-item active" onclick="showView('all')" href="#">
-      <span class="nav-dot" style="background:#e8c547"></span>
+    <a class="nav-item nav-item-home active" onclick="showView('all')" href="#">
+      <span class="nav-item-home-icon">⊞</span>
       <span class="nav-item-text">Totes les categories</span>
     </a>
 
@@ -483,6 +579,13 @@
       <span class="nav-count">25</span>
     </a>
   </div>
+  <div class="nav-formules-wrap">
+    <a class="nav-formules-btn" href="formules.html" target="_blank">
+      <span class="nav-formules-icon">📐</span>
+      <span class="nav-formules-text">Formulari de referència</span>
+      <span class="nav-formules-arrow">↗</span>
+    </a>
+  </div>
 </nav>
 
 <!-- ═══════════════ MAIN ═══════════════ -->
@@ -491,14 +594,15 @@
   <div class="page-header" id="page-header-main">
     <div class="eyebrow">Proves d'accés a la universitat · Catalunya</div>
     <h2>Repositori d'exercicis</h2>
-    <p>Exercicis de Tecnologia i Enginyeria de les PAU, classificats per categoria temàtica. Fes clic a una categoria per veure els exercicis corresponents.</p>
+    <p>Exercicis de Tecnologia i Enginyeria de les PAU, classificats per categoria temàtica.</p>
   </div>
 
   <!-- ── VISTA: TOTES LES CATEGORIES ── -->
   <div id="view-all" class="category-section active">
     <div class="welcome">
       <h3>Com utilitzar aquest repositori</h3>
-      <p>Selecciona una categoria al menú de l'esquerra per veure tots els exercicis d'aquell tema, amb l'enunciat resumit i un enllaç directe a la solució en el PDF oficial. Els exercicis que apareixen en dues categories estan marcats amb la indicació <strong style="color:var(--text)">doble</strong>.</p>
+      <p>Selecciona una categoria per veure tots els exercicis d'aquell tema. Fent clic al nom de l'exercici s'obre el PDF a la pàgina corresponent; també hi ha un enllaç directe a la solució oficial.</p>
+      <p style="margin-top:0.6rem;font-size:0.84rem;">Per tornar a aquesta pàgina des de qualsevol categoria, fes clic a <strong onclick="showView('all')" style="color:var(--accent);cursor:pointer;border-bottom:1px dashed var(--accent)">Totes les categories</strong> al menú.</p>
     </div>
     <div class="category-grid">
       <a class="cat-card" onclick="showCat('elec-cc')" href="#" style="border-left-color:var(--c-elec-cc)">
@@ -566,7 +670,8 @@
       </tr></thead>
       <tbody>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2016.pdf#page=3" target="_blank">Juny 2016 · S3 · OpA · Ex3</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2016.pdf#page=3" target="_blank">Juny 2016 · S3 · OpA · Ex3</a>
+          <span class="also-cat" onclick="showCat('motors')" style="border-color:#5ce0c8;color:#5ce0c8" title="Veure tots els exercicis de Motors · Generadors">↗ També a: Motors · Generadors</span></td>
           <td class="td-enunciat">Cafetera elèctrica (R_e i R_m): energia per escalfar 0,5 L de 20°C a 120°C, temps de la primera fase i valors de les resistències (P₁=700 W, P₂=260 W, U=230 V)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2016_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
@@ -586,12 +691,13 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016.pdf#page=4" target="_blank">Setembre 2016 · S1 · OpB · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016.pdf#page=4" target="_blank">Setembre 2016 · S1 · OpB · Ex4</a></td>
           <td class="td-enunciat">Motor de corrent continu (Γ=cI, I=(U−cω)/R, R=0,03 Ω, c=0,02 N·m/A): tensió d'alimentació quan I=50 A, velocitat angular quan I=100 A i corba de rendiment en funció de ω</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
               <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=4" target="_blank">Juny 2017 · S1 · OpB · Ex4</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=4" target="_blank">Juny 2017 · S1 · OpB · Ex4</a>
+          <span class="also-cat" onclick="showCat('metro')" style="border-color:#e8c547;color:#e8c547" title="Veure tots els exercicis de Metrologia">↗ També a: Metrologia</span></td>
           <td class="td-enunciat">Fanal exterior amb 15 LEDs i resistència R (U_LED=3,4 V, U_bat=12 V, c_bat=10000 mAh): R per n=4 bateries (I_LED=25 mA), energia i temps bateries; intensitat i durada per n=3 bateries</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
@@ -606,27 +712,30 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017_Solucions.pdf#page=3" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=8" target="_blank">Juny 2017 · S5 · OpB · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=8" target="_blank">Juny 2017 · S5 · OpB · Ex3</a></td>
           <td class="td-enunciat">Potenciòmetre lineal per mesurar distàncies (U_e=24 V, R=5 kΩ): intensitat, tensió de sortida, corba U_s(R₁) i factor de sensibilitat k</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017_Solucions.pdf#page=4" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017.pdf#page=2" target="_blank">Setembre 2017 · S2 · Ex1 · Q3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017.pdf#page=2" target="_blank">Setembre 2017 · S2 · Ex1 · Q3</a>
+          <span class="also-cat" onclick="showCat('metro')" style="border-color:#e8c547;color:#e8c547" title="Veure tots els exercicis de Metrologia">↗ També a: Metrologia</span></td>
           <td class="td-enunciat">Resistència equivalent de dues resistències de 30 Ω en paral·lel amb toleràncies ±2% i ±5%: interval de valors possibles</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017.pdf#page=3" target="_blank">Setembre 2017 · S2 · OpA · Ex3</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017.pdf#page=3" target="_blank">Setembre 2017 · S2 · OpA · Ex3</a>
+          <span class="also-cat" onclick="showCat('termo')" style="border-color:#e07a7a;color:#e07a7a" title="Veure tots els exercicis de Termodinàmica">↗ També a: Termodinàmica</span></td>
           <td class="td-enunciat">Tetera elèctrica (U=230 V, V=1,4 L, T₀=20°C, T₁=95°C, t=4 min 30 s): energia fase escalfament, R_e i corrent I, R_m per P_m=300 W</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=4" target="_blank">Juny 2018 · S1 · OpB · Ex4</a> <span class="dual-badge">doble</span></td>
-          <td class="td-enunciat">Vehicle gasolina/GLP: potència tèrmica, cost per 100 km, distància per amortitzar instal·lació GLP i distància estimada amb dipòsit al 85% (doble amb Termodinàmica)</td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=4" target="_blank">Juny 2018 · S1 · OpB · Ex4</a></td>
+          <td class="td-enunciat">Vehicle gasolina/GLP: potència tèrmica, cost per 100 km, distància per amortitzar instal·lació GLP i distància estimada amb dipòsit al 85%</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=7" target="_blank">Juny 2018 · S5 · OpA · Ex4</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=7" target="_blank">Juny 2018 · S5 · OpA · Ex4</a>
+          <span class="also-cat" onclick="showCat('motors')" style="border-color:#5ce0c8;color:#5ce0c8" title="Veure tots els exercicis de Motors · Generadors">↗ També a: Motors · Generadors</span></td>
           <td class="td-enunciat">Planxa de viatge dual 120/230 V (P=1000 W): R₁ i R₂, intensitats I₁ i I₂, potència P_e amb interruptor espatllat (R_A=3 Ω) alimentada a 120 V</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018_Solucions.pdf#page=4" target="_blank">✅ Solució</a></td>
         </tr>
@@ -666,12 +775,13 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=8" target="_blank">Juny 2020 · S3 · Ex5</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=8" target="_blank">Juny 2020 · S3 · Ex5</a></td>
           <td class="td-enunciat">Cadira de rodes elèctrica (bateria 74 Ah, U=12 V, α₁=6°, m=190 kg, v=5 km/h, η=0,81): P_cons, E_bat, temps màxim t_màx i distància; reducció Δs si α₂=10°</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=5" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=12" target="_blank">Juny 2020 · S4 · Ex6</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=12" target="_blank">Juny 2020 · S4 · Ex6</a>
+          <span class="also-cat" onclick="showCat('metro')" style="border-color:#e8c547;color:#e8c547" title="Veure tots els exercicis de Metrologia">↗ També a: Metrologia</span></td>
           <td class="td-enunciat">Planxa de cabells (R₁=R₂=70 Ω en paral·lel, U=230 V, t=6 h/dia): intensitat total, potència elèctrica, energia diària, cost diari (c=0,12 €/kWh)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
@@ -681,12 +791,13 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2020_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2021.pdf#page=18" target="_blank">Juny 2021 · S5 · Ex1 · Q2</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2021.pdf#page=18" target="_blank">Juny 2021 · S5 · Ex1 · Q2</a></td>
           <td class="td-enunciat">Dues resistències de 12 Ω en sèrie amb toleràncies ±0,25% i ±1%: valor màxim i mínim de la resistència equivalent</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2021_Solucions.pdf#page=6" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2021.pdf#page=28" target="_blank">Juny 2021 · S5 · Ex6</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2021.pdf#page=28" target="_blank">Juny 2021 · S5 · Ex6</a>
+          <span class="also-cat" onclick="showCat('metro')" style="border-color:#e8c547;color:#e8c547" title="Veure tots els exercicis de Metrologia">↗ També a: Metrologia</span></td>
           <td class="td-enunciat">Assecador de cabells (R=30 Ω, fil ρ=0,22 µΩ·m, d=0,4 mm, U=230 V): longitud fil L=17,14 m, potència P=1763 W, energia en 10 min, corrent I=7,667 A, potència a U'=110 V → P'=403,3 W</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2021_Solucions.pdf#page=8" target="_blank">✅ Solució</a></td>
         </tr>
@@ -711,17 +822,19 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2022_Solucions.pdf#page=5" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=19" target="_blank">Juny 2023 · S5 · Ex1 · Q4</a> <span class="dual-badge">doble</span></td>
-          <td class="td-enunciat">Circuit elèctric amb resistència 20 Ω i 30 Ω en paral·lel, tolerància ±5%. Interval de valors de la resistència equivalent (doble amb Metrologia)</td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=19" target="_blank">Juny 2023 · S5 · Ex1 · Q4</a></td>
+          <td class="td-enunciat">Circuit elèctric amb resistència 20 Ω i 30 Ω en paral·lel, tolerància ±5%. Interval de valors de la resistència equivalent</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023_Solucions.pdf#page=6" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=12" target="_blank">Juny 2023 · S1 · Ex6</a> <span class="dual-badge">doble</span></td>
-          <td class="td-enunciat">Espremedora domèstica: motor CC d'imants permanents (Γ_mot=(0,08U−0,01ω) N·m, U=24 V) amb reductor (z_p=9, z_r=62). Relació transmissió, corba parell-velocitat, intensitat I i velocitat angular de sortida (doble amb Motors)</td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=12" target="_blank">Juny 2023 · S1 · Ex6</a>
+          <span class="also-cat" onclick="showCat('motors')" style="border-color:#5ce0c8;color:#5ce0c8" title="Veure tots els exercicis de Motors · Generadors">↗ També a: Motors · Generadors</span></td>
+          <td class="td-enunciat">Espremedora domèstica: motor CC d'imants permanents (Γ_mot=(0,08U−0,01ω) N·m, U=24 V) amb reductor (z_p=9, z_r=62). Relació transmissió, corba parell-velocitat, intensitat I i velocitat angular de sortida</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023_Solucions.pdf#page=5" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023.pdf#page=3" target="_blank">Setembre 2023 · S2 · Ex1 · Q5</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023.pdf#page=3" target="_blank">Setembre 2023 · S2 · Ex1 · Q5</a>
+          <span class="also-cat" onclick="showCat('metro')" style="border-color:#e8c547;color:#e8c547" title="Veure tots els exercicis de Metrologia">↗ També a: Metrologia</span></td>
           <td class="td-enunciat">Fil de resistència elèctrica d'un calefactor (ρ=16×10⁻⁹ Ω·m, d=0,12 mm, L=30 m, U=230 V). Potència consumida pel calefactor.</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
@@ -731,7 +844,7 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2024_Solucions.pdf#page=4" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=2" target="_blank">Setembre 2025 · S3 · Ex1 · Q4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=2" target="_blank">Setembre 2025 · S3 · Ex1 · Q4</a></td>
           <td class="td-enunciat">Dues resistències 120 Ω i 240 Ω en paral·lel, tolerància ±2% cadascuna. Valor mínim possible de la resistència equivalent del circuit</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
@@ -757,7 +870,8 @@
       </tr></thead>
       <tbody>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2016.pdf#page=2" target="_blank">Juny 2016 · S3 · Ex2</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2016.pdf#page=2" target="_blank">Juny 2016 · S3 · Ex2</a>
+          <span class="also-cat" onclick="showCat('termo')" style="border-color:#e07a7a;color:#e07a7a" title="Veure tots els exercicis de Termodinàmica">↗ També a: Termodinàmica</span></td>
           <td class="td-enunciat">Sistema d'aforament amb 3 sensors: avís de megafonia quan almenys 2 sensors superen p_màx. Taula de veritat, funció lògica simplificada i esquema de contactes</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2016_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
@@ -777,12 +891,13 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=6" target="_blank">Juny 2017 · S5 · Ex2</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=6" target="_blank">Juny 2017 · S5 · Ex2</a></td>
           <td class="td-enunciat">Cotxe amb 4 cilindres: desconnectar 2 si velocitat motor entre 1400–4000 min⁻¹ I demanda actual baixa I darrer km demanda baixa. Taula de veritat, funció lògica i esquema de contactes.</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017_Solucions.pdf#page=3" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017.pdf#page=2" target="_blank">Setembre 2017 · S2 · Ex2</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017.pdf#page=2" target="_blank">Setembre 2017 · S2 · Ex2</a>
+          <span class="also-cat" onclick="showCat('materials')" style="border-color:#d4a853;color:#d4a853" title="Veure tots els exercicis de Materials">↗ També a: Materials</span></td>
           <td class="td-enunciat">Control d'il·luminació intel·ligent: fanals encesos si és de nit I algun dels dos sensors de moviment detecta presència. Taula de veritat, funció lògica i esquema de contactes.</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
@@ -948,132 +1063,153 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2016_Solucions.pdf#page=5" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016.pdf#page=4" target="_blank">Setembre 2016 · S1 · OpB · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016.pdf#page=4" target="_blank">Setembre 2016 · S1 · OpB · Ex3</a></td>
           <td class="td-enunciat">Sistema de politges per pujar un bloc de 50 kg (cable d=5 mm, E=130 GPa, L=2000 mm): tensió i deformació del cable, allargament ΔL i parell Γ del motor</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
               <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=3" target="_blank">Juny 2017 · S1 · OpA · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=3" target="_blank">Juny 2017 · S1 · OpA · Ex4</a>
+          <span class="also-cat" onclick="showCat('motors')" style="border-color:#5ce0c8;color:#5ce0c8" title="Veure tots els exercicis de Motors · Generadors">↗ També a: Motors · Generadors</span></td>
           <td class="td-enunciat">Elevador amb motor CC en sèrie amb reductor (m=2500 kg, Δh=5 m, t=60 s, η_red=0,70, η_mot=0,78, U=220 V, n=1500 min⁻¹): potència mecànica, potència motor, parell, intensitat i potència dissipada</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=7" target="_blank">Juny 2017 · S5 · OpA · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=7" target="_blank">Juny 2017 · S5 · OpA · Ex4</a>
+          <span class="also-cat" onclick="showCat('materials')" style="border-color:#d4a853;color:#d4a853" title="Veure tots els exercicis de Materials">↗ També a: Materials</span></td>
           <td class="td-enunciat">Ascensor amb contrapès (m_c=320 kg, m_cp=120 kg, v_c=1 m/s, η=0,82, n=6 cintes s=30×2,5 mm²): potència mecànica, potència elèctrica, massa per potència nul·la, tensió normal màxima de les cintes</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017_Solucions.pdf#page=4" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017.pdf#page=3" target="_blank">Setembre 2017 · S2 · OpA · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017.pdf#page=3" target="_blank">Setembre 2017 · S2 · OpA · Ex4</a>
+          <span class="also-cat" onclick="showCat('motors')" style="border-color:#5ce0c8;color:#5ce0c8" title="Veure tots els exercicis de Motors · Generadors">↗ També a: Motors · Generadors</span></td>
           <td class="td-enunciat">Aerogenerador (multiplicador τ=90, η_gen=0,85, Γ₁=1600 kNm, P_elèc=1,5 MW, n₁=15–25 min⁻¹): potència i parell eix sortida multiplicador, rendiment multiplicador, potències dissipades</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=3" target="_blank">Juny 2018 · S1 · OpA · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=3" target="_blank">Juny 2018 · S1 · OpA · Ex4</a>
+          <span class="also-cat" onclick="showCat('motors')" style="border-color:#5ce0c8;color:#5ce0c8" title="Veure tots els exercicis de Motors · Generadors">↗ També a: Motors · Generadors</span></td>
           <td class="td-enunciat">Plataforma elevadora amb motor CC i reductor (Δh=4,5 m, t=50 s, η_red=0,72, U=220 V, I=17,5 A, n=1500 min⁻¹, Γ_m=19,5 Nm): potència elèctrica i rendiment motor, potència dissipada, massa càrrega</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=7" target="_blank">Juny 2018 · S5 · OpA · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=7" target="_blank">Juny 2018 · S5 · OpA · Ex3</a>
+          <span class="also-cat" onclick="showCat('motors')" style="border-color:#5ce0c8;color:#5ce0c8" title="Veure tots els exercicis de Motors · Generadors">↗ També a: Motors · Generadors</span></td>
           <td class="td-enunciat">Automòbil en pendent: força resistent F_r=(230+0,13v²) N, corba potència-velocitat (0–120 km/h), parell Γ del motor (η=0,8, n=2500 min⁻¹, v=60 km/h)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018_Solucions.pdf#page=4" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=8" target="_blank">Juny 2018 · S5 · OpB · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=8" target="_blank">Juny 2018 · S5 · OpB · Ex4</a>
+          <span class="also-cat" onclick="showCat('termo')" style="border-color:#e07a7a;color:#e07a7a" title="Veure tots els exercicis de Termodinàmica">↗ També a: Termodinàmica</span></td>
           <td class="td-enunciat">Avió comercial (p_c=42,42 MJ/kg, ρ=0,8075 kg/L, N=144 seients, V=24000 L, v=850 km/h, c=2700 kg/h, F_E=43 kN): distància màxima, consum mínim per passatger i rendiment dels motors</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018_Solucions.pdf#page=5" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018.pdf#page=3" target="_blank">Setembre 2018 · S3 · OpA · Ex3</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018.pdf#page=3" target="_blank">Setembre 2018 · S3 · OpA · Ex3</a>
+          <span class="also-cat" onclick="showCat('motors')" style="border-color:#5ce0c8;color:#5ce0c8" title="Veure tots els exercicis de Motors · Generadors">↗ També a: Motors · Generadors</span></td>
           <td class="td-enunciat">Captadors solars tèrmics (S=2,1 m², T_m=50°C, T_a=18°C, I=800 W/m², c=390 L/dia, ΔT=35°C): rendiments A i B, nombre captadors n, energia elèctrica quan radiació disminueix a la meitat</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018.pdf#page=3" target="_blank">Setembre 2018 · S3 · OpA · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018.pdf#page=3" target="_blank">Setembre 2018 · S3 · OpA · Ex4</a></td>
           <td class="td-enunciat">Motorista pujant pendent (v=50 km/h, τ=0,044, η_eng=0,90, η_cad=0,85, d=620 mm, m=150 kg, Γ_motor=6 Nm): velocitats angulars, potència motor, potència mecànica roda i angle α, parell roda</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018.pdf#page=7" target="_blank">Setembre 2018 · S1 · OpA · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018.pdf#page=7" target="_blank">Setembre 2018 · S1 · OpA · Ex3</a>
+          <span class="also-cat" onclick="showCat('motors')" style="border-color:#5ce0c8;color:#5ce0c8" title="Veure tots els exercicis de Motors · Generadors">↗ També a: Motors · Generadors</span></td>
           <td class="td-enunciat">Automòbil en pendent: força resistent F_r=(230+0,13v²) N, corba potència-velocitat (0–120 km/h), parell Γ del motor (η=0,8, n=2500 min⁻¹, v=60 km/h)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018_Solucions.pdf#page=3" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018.pdf#page=8" target="_blank">Setembre 2018 · S1 · OpB · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018.pdf#page=8" target="_blank">Setembre 2018 · S1 · OpB · Ex4</a>
+          <span class="also-cat" onclick="showCat('termo')" style="border-color:#e07a7a;color:#e07a7a" title="Veure tots els exercicis de Termodinàmica">↗ També a: Termodinàmica</span></td>
           <td class="td-enunciat">Avió comercial (p_c=42,42 MJ/kg, ρ=0,8075 kg/L, N=144 seients, V=24000 L, v=850 km/h, c=2700 kg/h, F_E=43 kN): distància màxima, consum mínim per passatger i rendiment dels motors</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018_Solucions.pdf#page=3" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=3" target="_blank">Juny 2019 · S1 · OpA · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=3" target="_blank">Juny 2019 · S1 · OpA · Ex3</a>
+          <span class="also-cat" onclick="showCat('motors')" style="border-color:#5ce0c8;color:#5ce0c8" title="Veure tots els exercicis de Motors · Generadors">↗ També a: Motors · Generadors</span></td>
           <td class="td-enunciat">Parc eòlic (n=50, d=77 m, η=0,68, c_a=0,42, v=25 km/h): potència del vent, potència útil per aerogenerador, energia total anual, ingressos i reducció per velocitat −10%</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=3" target="_blank">Juny 2019 · S1 · OpA · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=3" target="_blank">Juny 2019 · S1 · OpA · Ex4</a>
+          <span class="also-cat" onclick="showCat('motors')" style="border-color:#5ce0c8;color:#5ce0c8" title="Veure tots els exercicis de Motors · Generadors">↗ També a: Motors · Generadors</span></td>
           <td class="td-enunciat">Patinet elèctric (U=24 V, E_bat=250 Wh, η_motor=0,89, d=160 mm, n=664 min⁻¹, P_subm=200 W): parell motor, velocitat, energia mecànica útil, temps màxim i distància màxima</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=7" target="_blank">Juny 2019 · S4 · OpA · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=7" target="_blank">Juny 2019 · S4 · OpA · Ex4</a>
+          <span class="also-cat" onclick="showCat('motors')" style="border-color:#5ce0c8;color:#5ce0c8" title="Veure tots els exercicis de Motors · Generadors">↗ També a: Motors · Generadors</span></td>
           <td class="td-enunciat">Central mareomotriu (turbina+multiplicador+generador, P_elèc=1000 kW, n₁=10 min⁻¹, n₂=1500 min⁻¹, η_gen=0,87, Γ₁=1400 kNm): P₂ i Γ₂, η_mult, τ, potència dissipada</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019_Solucions.pdf#page=5" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=8" target="_blank">Juny 2019 · S4 · OpB · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=8" target="_blank">Juny 2019 · S4 · OpB · Ex4</a>
+          <span class="also-cat" onclick="showCat('hidro')" style="border-color:#64a0dc;color:#64a0dc" title="Veure tots els exercicis de Hidràulica i Pneumàtica">↗ També a: Hidràulica i Pneumàtica</span></td>
           <td class="td-enunciat">Ascensor hidràulic (d_int=90 mm, d_tija=70 mm, m=1170 kg, v=0,33 m/s, P_elèctr=5300 W, η_b=0,85): cabal q i pressió p bomba, força i pressió cilindre, rendiment i potència dissipada</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019_Solucions.pdf#page=6" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=12" target="_blank">Juny 2019 · S5 · OpB · Ex3</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=12" target="_blank">Juny 2019 · S5 · OpB · Ex3</a>
+          <span class="also-cat" onclick="showCat('termo')" style="border-color:#e07a7a;color:#e07a7a" title="Veure tots els exercicis de Termodinàmica">↗ També a: Termodinàmica</span></td>
           <td class="td-enunciat">Escala mecànica (Δh=6 m, t_p=45 s, m_p=70,8 kg, n_p=20, t_t=10 h/dia, P_buit=3,2 kW, η=0,58): potència addicional P_p, nombre total passatgers/dia, energia elèctrica total diària</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019_Solucions.pdf#page=3" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=12" target="_blank">Juny 2019 · S5 · OpB · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=12" target="_blank">Juny 2019 · S5 · OpB · Ex4</a></td>
           <td class="td-enunciat">Vehicle (6,3 L/100 km, v=120 km/h, V=60 L, η_trans=0,92, η_mot=0,30, p_c=43,5 MJ/kg): distància al 80% dipòsit, potència tèrmica, potència mecànica rodes i parell, potència dissipada</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019_Solucions.pdf#page=3" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019.pdf#page=3" target="_blank">Setembre 2019 · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019.pdf#page=3" target="_blank">Setembre 2019 · Ex3</a>
+          <span class="also-cat" onclick="showCat('motors')" style="border-color:#5ce0c8;color:#5ce0c8" title="Veure tots els exercicis de Motors · Generadors">↗ També a: Motors · Generadors</span></td>
           <td class="td-enunciat">Cadira de rodes manual amb ajuda electromecànica (U_bat=12 V, E_bat=240 Wh, η_mot=0,87, η_red=0,95, d=200 mm, τ=0,08, v=3,7 km/h, P_cons=75 W): velocitats angulars, potència, parell, temps màxim i distància</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=3" target="_blank">Juny 2020 · S1 · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=3" target="_blank">Juny 2020 · S1 · Ex3</a>
+          <span class="also-cat" onclick="showCat('motors')" style="border-color:#5ce0c8;color:#5ce0c8" title="Veure tots els exercicis de Motors · Generadors">↗ També a: Motors · Generadors</span></td>
           <td class="td-enunciat">Cadira de rodes manual amb ajuda electromecànica (mateixos paràmetres): velocitats angulars, potència a les rodes, parell motor, temps màxim i distància màxima</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=7" target="_blank">Juny 2020 · S3 · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=7" target="_blank">Juny 2020 · S3 · Ex4</a>
+          <span class="also-cat" onclick="showCat('termo')" style="border-color:#e07a7a;color:#e07a7a" title="Veure tots els exercicis de Termodinàmica">↗ També a: Termodinàmica</span></td>
           <td class="td-enunciat">Cotxe benzina (m=1650 kg, v₁=80→v₂=120 km/h en t=6,9 s, p=46 MJ/kg, ρ=0,72 g/cm³, η=0,4): potència útil, energia consumida i volum combustible</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=4" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=8" target="_blank">Juny 2020 · S3 · Ex5</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=8" target="_blank">Juny 2020 · S3 · Ex5</a>
+          <span class="also-cat" onclick="showCat('elec-cc')" style="border-color:#e05c5c;color:#e05c5c" title="Veure tots els exercicis de Electricitat DC">↗ També a: Electricitat DC</span></td>
           <td class="td-enunciat">Cadira de rodes elèctrica (bateria 74 Ah, U=12 V, α₁=6°, m=190 kg, v=5 km/h, η=0,81): P_cons, E_bat, temps màxim i distància, reducció Δs si α₂=10°</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=5" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=11" target="_blank">Juny 2020 · S4 · Ex4</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=11" target="_blank">Juny 2020 · S4 · Ex4</a>
+          <span class="also-cat" onclick="showCat('motors')" style="border-color:#5ce0c8;color:#5ce0c8" title="Veure tots els exercicis de Motors · Generadors">↗ També a: Motors · Generadors</span></td>
           <td class="td-enunciat">Central hidroelèctrica (h=61,9 m, q=35 m³/s, η=0,93, 8 h/dia, 310 dies/any): P_aigua, P_subministrada, energia diària útil, energia anual i nombre d'habitatges (E_cons=3487 kWh/any)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=12" target="_blank">Juny 2020 · S4 · Ex5</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=12" target="_blank">Juny 2020 · S4 · Ex5</a></td>
           <td class="td-enunciat">Bicicleta elèctrica (E_bat=400 Wh, η_motor=0,957, η_red=0,93, τ=0,065, d=710 mm, v=25 km/h, P_subm=250 W): energia dissipada, temps màxim i distància, velocitat angular rodes, parell motor</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2020.pdf#page=3" target="_blank">Setembre 2020 · S4 · Ex4</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2020.pdf#page=3" target="_blank">Setembre 2020 · S4 · Ex4</a>
+          <span class="also-cat" onclick="showCat('motors')" style="border-color:#5ce0c8;color:#5ce0c8" title="Veure tots els exercicis de Motors · Generadors">↗ També a: Motors · Generadors</span></td>
           <td class="td-enunciat">Central hidroelèctrica (h=61,9 m, q=35 m³/s, η=0,93, 8 h/dia, 310 dies/any): P_aigua, P_subministrada, energia diària útil, energia anual i nombre d'habitatges</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2020_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2020.pdf#page=3" target="_blank">Setembre 2020 · S4 · Ex5</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2020.pdf#page=3" target="_blank">Setembre 2020 · S4 · Ex5</a></td>
           <td class="td-enunciat">Bicicleta elèctrica (E_bat=400 Wh, η_motor=0,957, η_red=0,93, τ=0,065, d=710 mm, v=25 km/h, P_subm=250 W): energia dissipada, temps màxim i distància, velocitat angular rodes, parell motor</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2020_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2021.pdf#page=2" target="_blank">Setembre 2021 · S1 · Ex1 · Q1</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2021.pdf#page=2" target="_blank">Setembre 2021 · S1 · Ex1 · Q1</a>
+          <span class="also-cat" onclick="showCat('motors')" style="border-color:#5ce0c8;color:#5ce0c8" title="Veure tots els exercicis de Motors · Generadors">↗ També a: Motors · Generadors</span></td>
           <td class="td-enunciat">Superfície de panells fotovoltaics necessària per a un refugi de muntanya (consum 150 kWh/mes, radiació 700 W/m², 4 h/dia, rendiment 8%)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2021_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
@@ -1118,62 +1254,69 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2022_Solucions.pdf#page=3" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=6" target="_blank">Juny 2023 · S1 · Ex3</a> <span class="dual-badge">doble</span></td>
-          <td class="td-enunciat">Pantalla de projecció (m=2 kg) recollida per motor reductor (η_mot=0,9, d=250 mm) de h₁=0,3 m a h₂=2 m en t=8 s. P_elèctr consumida, ω_mot i Γ_mot, increment percentual de P si es puja amb la meitat del temps (doble amb Motors)</td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=6" target="_blank">Juny 2023 · S1 · Ex3</a></td>
+          <td class="td-enunciat">Pantalla de projecció (m=2 kg) recollida per motor reductor (η_mot=0,9, d=250 mm) de h₁=0,3 m a h₂=2 m en t=8 s. P_elèctr consumida, ω_mot i Γ_mot, increment percentual de P si es puja amb la meitat del temps</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=22" target="_blank">Juny 2023 · S5 · Ex3</a> <span class="dual-badge">doble</span></td>
-          <td class="td-enunciat">Petits aerogeneradors rurals (E_casa=500 kWh/any, η_gen=1/3, v=4 m/s, 14 h/dia, 250 dies/any). P_rotor (del gràfic), ω i Γ a l'eix del rotor, energia anual E_subm, nombre q d'aerogeneradors (doble amb Motors)</td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=22" target="_blank">Juny 2023 · S5 · Ex3</a>
+          <span class="also-cat" onclick="showCat('motors')" style="border-color:#5ce0c8;color:#5ce0c8" title="Veure tots els exercicis de Motors · Generadors">↗ També a: Motors · Generadors</span></td>
+          <td class="td-enunciat">Petits aerogeneradors rurals (E_casa=500 kWh/any, η_gen=1/3, v=4 m/s, 14 h/dia, 250 dies/any). P_rotor (del gràfic), ω i Γ a l'eix del rotor, energia anual E_subm, nombre q d'aerogeneradors</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023_Solucions.pdf#page=7" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=28" target="_blank">Juny 2023 · S5 · Ex6</a> <span class="dual-badge">doble</span></td>
-          <td class="td-enunciat">Cadira de rodes elèctrica (v=4 km/h, pendent 10%, m=240 kg, d=300 mm, η=0,79, 2 rodes motrius). P_mec per roda, parell Γ per roda, potència elèctrica total P_cons (doble amb Motors)</td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=28" target="_blank">Juny 2023 · S5 · Ex6</a>
+          <span class="also-cat" onclick="showCat('motors')" style="border-color:#5ce0c8;color:#5ce0c8" title="Veure tots els exercicis de Motors · Generadors">↗ També a: Motors · Generadors</span></td>
+          <td class="td-enunciat">Cadira de rodes elèctrica (v=4 km/h, pendent 10%, m=240 kg, d=300 mm, η=0,79, 2 rodes motrius). P_mec per roda, parell Γ per roda, potència elèctrica total P_cons</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023_Solucions.pdf#page=10" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023.pdf#page=2" target="_blank">Setembre 2023 · S2 · Ex1 · Q2</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023.pdf#page=2" target="_blank">Setembre 2023 · S2 · Ex1 · Q2</a>
+          <span class="also-cat" onclick="showCat('motors')" style="border-color:#5ce0c8;color:#5ce0c8" title="Veure tots els exercicis de Motors · Generadors">↗ També a: Motors · Generadors</span></td>
           <td class="td-enunciat">Motor eleva barrera de pàrquing homogènia (l=1,5 m, m=3 kg) de posició horitzontal fins a vertical. Energia mecànica necessària per fer el moviment.</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023.pdf#page=8" target="_blank">Setembre 2023 · S2 · Ex4</a> <span class="dual-badge">doble</span></td>
-          <td class="td-enunciat">Cadira de rodes elèctrica experimental (U=36 V, E_bat=240 Wh, η=0,72, m=130 kg, α=8°). Capacitat bateria c, velocitats v₁ i v₂, temps màxims i distància màxima s_màx (doble amb Motors)</td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023.pdf#page=8" target="_blank">Setembre 2023 · S2 · Ex4</a></td>
+          <td class="td-enunciat">Cadira de rodes elèctrica experimental (U=36 V, E_bat=240 Wh, η=0,72, m=130 kg, α=8°). Capacitat bateria c, velocitats v₁ i v₂, temps màxims i distància màxima s_màx</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023_Solucions.pdf#page=3" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024.pdf#page=3" target="_blank">Juny 2024 · S1 · Ex1 · Q4</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024.pdf#page=3" target="_blank">Juny 2024 · S1 · Ex1 · Q4</a>
+          <span class="also-cat" onclick="showCat('motors')" style="border-color:#5ce0c8;color:#5ce0c8" title="Veure tots els exercicis de Motors · Generadors">↗ També a: Motors · Generadors</span></td>
           <td class="td-enunciat">Habitatge amb 8 plaques solars (S=4,4 m², irradiació 13 kWh/m²/dia, η=0,3): energia produïda durant el mes de setembre</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024.pdf#page=6" target="_blank">Juny 2024 · S1 · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024.pdf#page=6" target="_blank">Juny 2024 · S1 · Ex3</a></td>
           <td class="td-enunciat">Patinet elèctric (U=24 V, E_bat=250 Wh, η_mot=0,85, d_roda=140 mm, m=70 kg, v=8 km/h, α=7°): potència elèctrica consumida P_elèc, velocitat angular del motor ω_mot i parell Γ, percentatge d'energia consumida de la bateria Δ</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2024.pdf#page=2" target="_blank">Setembre 2024 · S3 · Ex1 · Q1</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2024.pdf#page=2" target="_blank">Setembre 2024 · S3 · Ex1 · Q1</a>
+          <span class="also-cat" onclick="showCat('motors')" style="border-color:#5ce0c8;color:#5ce0c8" title="Veure tots els exercicis de Motors · Generadors">↗ També a: Motors · Generadors</span></td>
           <td class="td-enunciat">Pantalla de projecció (m=3 kg) enrotllada per motor reductor (h=1,5 m, d=250 mm, t=3 s): energia mecànica necessària</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2024_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2024.pdf#page=6" target="_blank">Setembre 2024 · S3 · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2024.pdf#page=6" target="_blank">Setembre 2024 · S3 · Ex3</a></td>
           <td class="td-enunciat">Cistella de bàsquet solidària a barra OC (m=100 kg, l=1 m, ω=0,1745 rad/s, η=0,8). Maniobra plegat de φ₁=45° a φ₂=15°: energia mecànica E_mec, energia motor E_mot, velocitat vertical centre d'inèrcia v_vert (a φ=30°), potència motor P_mot</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2024_Solucions.pdf#page=3" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2025.pdf#page=2" target="_blank">Juny 2025 · S1 · Ex1 · Q3</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2025.pdf#page=2" target="_blank">Juny 2025 · S1 · Ex1 · Q3</a>
+          <span class="also-cat" onclick="showCat('motors')" style="border-color:#5ce0c8;color:#5ce0c8" title="Veure tots els exercicis de Motors · Generadors">↗ També a: Motors · Generadors</span></td>
           <td class="td-enunciat">Dos funiculars per anar entre dos punts de muntanya a velocitat constant. Opció A: recorregut curt amb pendent acusat. Opció B: recorregut llarg amb pendent suau. Mateixa velocitat i nombre de persones. Comparació de l'energia total necessària (sense pèrdues)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2025_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2025.pdf#page=6" target="_blank">Juny 2025 · S1 · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2025.pdf#page=6" target="_blank">Juny 2025 · S1 · Ex3</a></td>
           <td class="td-enunciat">Elevador de taller de 2 columnes amb transmissió cargol-femella (m=1900 kg per columna, h=1,8 m, p=7 mm/volta, η=0,4, n_mot=1420 min⁻¹, t=45 s): potència mecànica P_mec, potència elèctrica P_elèc per motor, voltes del cargol n_voltes, relació de transmissió del reductor i</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2025_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=2" target="_blank">Setembre 2025 · S3 · Ex1 · Q1</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=2" target="_blank">Setembre 2025 · S3 · Ex1 · Q1</a>
+          <span class="also-cat" onclick="showCat('materials')" style="border-color:#d4a853;color:#d4a853" title="Veure tots els exercicis de Materials">↗ També a: Materials</span></td>
           <td class="td-enunciat">Cotxe elèctric (consum 129,6 MJ per 200 km, electricitat a 0,23 €/(kWh)): cost per kilòmetre</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
@@ -1229,22 +1372,24 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016.pdf#page=2" target="_blank">Setembre 2016 · S1 · Ex1 · Q3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016.pdf#page=2" target="_blank">Setembre 2016 · S1 · Ex1 · Q3</a></td>
           <td class="td-enunciat">Quantitat de cobalt per obtenir un aliatge Cu-Co-Be (96,9% Cu, 2,5% Co, 0,6% Be) a partir de 500 kg de coure</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016.pdf#page=3" target="_blank">Setembre 2016 · S1 · OpA · Ex3</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016.pdf#page=3" target="_blank">Setembre 2016 · S1 · OpA · Ex3</a>
+          <span class="also-cat" onclick="showCat('materials')" style="border-color:#d4a853;color:#d4a853" title="Veure tots els exercicis de Materials">↗ També a: Materials</span></td>
           <td class="td-enunciat">Construcció d'una estrella de fusta (b=0,455 m, h₁=0,700 m, h₂=0,313 m): superfície, perímetre per triangles vs. perfil exterior i cost de cada opció</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
               <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=1" target="_blank">Juny 2017 · S1 · Ex1 · Q3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=1" target="_blank">Juny 2017 · S1 · Ex1 · Q3</a></td>
           <td class="td-enunciat">Quantitat d'alumini per obtenir l'aliatge zamak (4% Al, 1% Cu, 0,05% Mg, resta Zn) a partir de 400 kg de zinc</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=2" target="_blank">Juny 2017 · S1 · Ex1 · Q5</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=2" target="_blank">Juny 2017 · S1 · Ex1 · Q5</a>
+          <span class="also-cat" onclick="showCat('termo')" style="border-color:#e07a7a;color:#e07a7a" title="Veure tots els exercicis de Termodinàmica">↗ També a: Termodinàmica</span></td>
           <td class="td-enunciat">Percentatge de peces correctes amb taxes de rebuig del 4% al fresatge i del 3% a la rectificació</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
@@ -1274,22 +1419,24 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017.pdf#page=2" target="_blank">Setembre 2017 · S2 · Ex1 · Q5</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017.pdf#page=2" target="_blank">Setembre 2017 · S2 · Ex1 · Q5</a></td>
           <td class="td-enunciat">Consum en L/(100 km) d'un vehicle de F1 (c_m=2,9 kg/volta, ρ=0,75 kg/L, d=5,543 km/volta)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017.pdf#page=4" target="_blank">Setembre 2017 · S2 · OpB · Ex3</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017.pdf#page=4" target="_blank">Setembre 2017 · S2 · OpB · Ex3</a>
+          <span class="also-cat" onclick="showCat('materials')" style="border-color:#d4a853;color:#d4a853" title="Veure tots els exercicis de Materials">↗ També a: Materials</span></td>
           <td class="td-enunciat">Maqueta de rampa per a patinadors amb impressora 3D (L₁=15, L₂=30, L₃=40, L₄=120 mm, e=0,2 mm, d=3 mm, ρ=1250 kg/m³): volum i massa, longitud filament PLA, nombre mínim de capes</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=1" target="_blank">Juny 2018 · S1 · Ex1 · Q2</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=1" target="_blank">Juny 2018 · S1 · Ex1 · Q2</a></td>
           <td class="td-enunciat">Quantitat de zinc per obtenir l'aliatge magal (8% Al, 1% Zn, 0,2% Mn, resta Mg) a partir de 350 kg de magnesi</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=2" target="_blank">Juny 2018 · S1 · Ex1 · Q5</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=2" target="_blank">Juny 2018 · S1 · Ex1 · Q5</a>
+          <span class="also-cat" onclick="showCat('mat')" style="border-color:#7ec98a;color:#7ec98a" title="Veure tots els exercicis de Matemàtiques aplic.">↗ També a: Matemàtiques aplic.</span></td>
           <td class="td-enunciat">Taxa de rebuig del tractament tèrmic si el 93,12% de les peces inicials acaben correctes i la taxa de rebuig del tornejat és del 3%</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
@@ -1299,7 +1446,7 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=4" target="_blank">Juny 2018 · S1 · OpB · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=4" target="_blank">Juny 2018 · S1 · OpB · Ex4</a></td>
           <td class="td-enunciat">Vehicle gasolina/GLP: potència tèrmica, cost per 100 km, distància per amortitzar instal·lació GLP (2000€, t=3 anys), distància estimada amb dipòsit al 85%</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
@@ -1344,17 +1491,17 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019.pdf#page=2" target="_blank">Setembre 2019 · Ex1 (Q5)</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019.pdf#page=2" target="_blank">Setembre 2019 · Ex1 (Q5)</a></td>
           <td class="td-enunciat">Aliatge Ti-6Al-7Nb (5,5% Al, 6,5% Nb, 0,25% Fe, 0,08% C, resta Ti): quantitat de niobi per obtenir l'aliatge a partir de 250 kg de titani</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019.pdf#page=3" target="_blank">Setembre 2019 · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019.pdf#page=3" target="_blank">Setembre 2019 · Ex4</a></td>
           <td class="td-enunciat">Estufa de butà: potència mínima i màxima, durada màxima bombona, gràfic t(c), massa CO₂ per 3 estufes a potència màxima 10 h/dia (FE=2,96 kg/kg)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=3" target="_blank">Juny 2020 · S1 · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=3" target="_blank">Juny 2020 · S1 · Ex4</a></td>
           <td class="td-enunciat">Estufa de butà: P_mín i P_màx, durada màxima bombona, gràfic t(c), massa CO₂ per 3 estufes a potència màxima 10 h/dia (FE=2,96 kg/kg)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
@@ -1364,7 +1511,7 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=3" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=8" target="_blank">Juny 2020 · S3 · Ex6</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=8" target="_blank">Juny 2020 · S3 · Ex6</a></td>
           <td class="td-enunciat">Hivernacle amb caldera de gasoil: E_subm i E_cons anuals, volum gasoil V, cost anual c_tot, massa CO₂ anual m_CO₂</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=5" target="_blank">✅ Solució</a></td>
         </tr>
@@ -1374,7 +1521,7 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2021_Solucions.pdf#page=7" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2021.pdf#page=19" target="_blank">Juny 2021 · S5 · Ex1 · Q5</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2021.pdf#page=19" target="_blank">Juny 2021 · S5 · Ex1 · Q5</a></td>
           <td class="td-enunciat">Quantitat de cobalt per obtenir l'aliatge crom-cobalt per a pròtesis dentals (63% Co, 30% Cr, 5% Mo, resta Si+Mn+C) a partir de 17 g de crom</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2021_Solucions.pdf#page=6" target="_blank">✅ Solució</a></td>
         </tr>
@@ -1394,7 +1541,7 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2022_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023.pdf#page=2" target="_blank">Setembre 2023 · S2 · Ex1 · Q3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023.pdf#page=2" target="_blank">Setembre 2023 · S2 · Ex1 · Q3</a></td>
           <td class="td-enunciat">Bomba depuradora de piscina (P=1,1 kW, η=0,7, q=10 m³/h, 6 h/dia, 7 mesos, c=0,21578 €/(kWh)). Cost econòmic total de tenir la bomba en funcionament (doble amb Hidràulica)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
@@ -1430,22 +1577,25 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2016_Solucions.pdf#page=3" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016.pdf#page=2" target="_blank">Setembre 2016 · S1 · Ex1 · Q3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016.pdf#page=2" target="_blank">Setembre 2016 · S1 · Ex1 · Q3</a></td>
           <td class="td-enunciat">Quantitat de cobalt per obtenir un aliatge Cu-Co-Be (96,9% Cu, 2,5% Co, 0,6% Be) a partir de 500 kg de coure</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016.pdf#page=4" target="_blank">Setembre 2016 · S1 · OpB · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016.pdf#page=4" target="_blank">Setembre 2016 · S1 · OpB · Ex3</a>
+          <span class="also-cat" onclick="showCat('energia')" style="border-color:#c97ec9;color:#c97ec9" title="Veure tots els exercicis de Energia · Potència">↗ També a: Energia · Potència</span></td>
           <td class="td-enunciat">Sistema de politges per pujar un bloc: tensió normal i deformació del cable (d=5 mm, E=130 GPa), allargament ΔL</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
               <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=1" target="_blank">Juny 2017 · S1 · Ex1 · Q3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=1" target="_blank">Juny 2017 · S1 · Ex1 · Q3</a>
+          <span class="also-cat" onclick="showCat('mat')" style="border-color:#7ec98a;color:#7ec98a" title="Veure tots els exercicis de Matemàtiques aplic.">↗ També a: Matemàtiques aplic.</span></td>
           <td class="td-enunciat">Quantitat d'alumini per obtenir l'aliatge zamak (4% Al, 1% Cu, 0,05% Mg, resta Zn) a partir de 400 kg de zinc</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=4" target="_blank">Juny 2017 · S1 · OpB · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=4" target="_blank">Juny 2017 · S1 · OpB · Ex3</a>
+          <span class="also-cat" onclick="showCat('mat')" style="border-color:#7ec98a;color:#7ec98a" title="Veure tots els exercicis de Matemàtiques aplic.">↗ També a: Matemàtiques aplic.</span></td>
           <td class="td-enunciat">Placa d'alumini articulada en O, sostinguda per cable d'acer a A (L=1000 mm, d=2 mm, e=5 mm, σ_e,acer=350 MPa, E=207 GPa): tensió normal σ del cable, deformació ε i si es deforma plàsticament</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
@@ -1455,12 +1605,13 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=1" target="_blank">Juny 2018 · S1 · Ex1 · Q2</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=1" target="_blank">Juny 2018 · S1 · Ex1 · Q2</a></td>
           <td class="td-enunciat">Quantitat de zinc per obtenir l'aliatge magal (8% Al, 1% Zn, 0,2% Mn, resta Mg) a partir de 350 kg de magnesi</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=8" target="_blank">Juny 2018 · S5 · OpB · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=8" target="_blank">Juny 2018 · S5 · OpB · Ex3</a>
+          <span class="also-cat" onclick="showCat('solid')" style="border-color:#c9a06e;color:#c9a06e" title="Veure tots els exercicis de Sòlid-rígid">↗ També a: Sòlid-rígid</span></td>
           <td class="td-enunciat">Cartell publicitari de dos taulers (h=900 mm, b=600 mm, e=11 mm, s=1,8 mm², α=40°, ρ=530 kg/m³): massa, força N terra, força F cables i tensió normal σ cables</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018_Solucions.pdf#page=5" target="_blank">✅ Solució</a></td>
         </tr>
@@ -1470,7 +1621,7 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018.pdf#page=8" target="_blank">Setembre 2018 · S1 · OpB · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018.pdf#page=8" target="_blank">Setembre 2018 · S1 · OpB · Ex3</a></td>
           <td class="td-enunciat">Cartell publicitari de dos taulers (h=900 mm, b=600 mm, e=11 mm, s=1,8 mm², α=40°, ρ=530 kg/m³): massa, força N terra, força F cables i tensió normal σ cables</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018_Solucions.pdf#page=3" target="_blank">✅ Solució</a></td>
         </tr>
@@ -1490,7 +1641,7 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019.pdf#page=4" target="_blank">Setembre 2019 · Ex5</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019.pdf#page=4" target="_blank">Setembre 2019 · Ex5</a></td>
           <td class="td-enunciat">Fanal (m=30 kg) penjat al punt mig de barra BO, tirant AB d'acer (σ_lim=250 MPa, d=4 mm): tensió σ_AB; anàlisi si d'=1 mm supera el límit elàstic</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
@@ -1500,7 +1651,7 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=4" target="_blank">Juny 2020 · S1 · Ex5</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=4" target="_blank">Juny 2020 · S1 · Ex5</a></td>
           <td class="td-enunciat">Fanal (m=30 kg), tirant AB d'acer (σ_lim=250 MPa, d=4 mm): tensió σ_AB; anàlisi si d'=1 mm supera el límit elàstic</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
@@ -1515,17 +1666,17 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=11" target="_blank">Juny 2020 · S4 · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=11" target="_blank">Juny 2020 · S4 · Ex3</a></td>
           <td class="td-enunciat">Barra OB sosté bola m=200 kg, tirant AC (d=3 mm): tensió normal σ del tirant</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2020.pdf#page=3" target="_blank">Setembre 2020 · S4 · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2020.pdf#page=3" target="_blank">Setembre 2020 · S4 · Ex3</a></td>
           <td class="td-enunciat">Barra OB sosté bola m=200 kg, tirant AC (d=3 mm): tensió normal σ del tirant</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2020_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2021.pdf#page=2" target="_blank">Setembre 2021 · S1 · Ex1 · Q4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2021.pdf#page=2" target="_blank">Setembre 2021 · S1 · Ex1 · Q4</a></td>
           <td class="td-enunciat">Quantitat d'alumini per obtenir l'aliatge Ti-6Al-4V (4,5% V, 6,5% Al, resta Ti) a partir de 20 kg de titani</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2021_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
@@ -1545,7 +1696,7 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2021_Solucions.pdf#page=6" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2021.pdf#page=19" target="_blank">Juny 2021 · S5 · Ex1 · Q5</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2021.pdf#page=19" target="_blank">Juny 2021 · S5 · Ex1 · Q5</a></td>
           <td class="td-enunciat">Quantitat de cobalt per obtenir l'aliatge crom-cobalt per a pròtesis dentals (63% Co, 30% Cr, 5% Mo) a partir de 17 g de crom</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2021_Solucions.pdf#page=6" target="_blank">✅ Solució</a></td>
         </tr>
@@ -1570,7 +1721,7 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023_Solucions.pdf#page=6" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023.pdf#page=12" target="_blank">Setembre 2023 · S2 · Ex6</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023.pdf#page=12" target="_blank">Setembre 2023 · S2 · Ex6</a></td>
           <td class="td-enunciat">Selecció de cilindre hidràulic (F=65000 N, p_màx=20 MPa). Tensió normal a compressió σ de la tija del cilindre escollit (doble amb Hidràulica)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023_Solucions.pdf#page=5" target="_blank">✅ Solució</a></td>
         </tr>
@@ -1595,8 +1746,8 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=8" target="_blank">Setembre 2025 · S3 · Ex4</a> <span class="dual-badge">doble</span></td>
-          <td class="td-enunciat">Guia OC de fusta (l=1 m, m=0,75 kg) articulada a la paret; tensor AB (fil de cotó, d_f=1,4 mm, σ_màx=80 MPa, φ=30°, d=0,3 m). Diagrama cos lliure, expressió T(x), T_màx, x_màx per no trencar el fil (doble amb Sòlid-rígid)</td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=8" target="_blank">Setembre 2025 · S3 · Ex4</a></td>
+          <td class="td-enunciat">Guia OC de fusta (l=1 m, m=0,75 kg) articulada a la paret; tensor AB (fil de cotó, d_f=1,4 mm, σ_màx=80 MPa, φ=30°, d=0,3 m). Diagrama cos lliure, expressió T(x), T_màx, x_màx per no trencar el fil</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025_Solucions.pdf#page=4" target="_blank">✅ Solució</a></td>
         </tr>
 </tbody>
@@ -1621,7 +1772,8 @@
       </tr></thead>
       <tbody>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2016.pdf#page=2" target="_blank">Juny 2016 · S3 · Ex1 · Q3</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2016.pdf#page=2" target="_blank">Juny 2016 · S3 · Ex1 · Q3</a>
+          <span class="also-cat" onclick="showCat('elec-cc')" style="border-color:#e05c5c;color:#e05c5c" title="Veure tots els exercicis de Electricitat DC">↗ També a: Electricitat DC</span></td>
           <td class="td-enunciat">Quantitat de mescla obtinguda pesant 105 g i 84 g amb una bàscula de precisió ±1,6%</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2016_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
@@ -1651,17 +1803,19 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=8" target="_blank">Juny 2017 · S5 · OpB · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=8" target="_blank">Juny 2017 · S5 · OpB · Ex3</a></td>
           <td class="td-enunciat">Potenciòmetre lineal per mesurar distàncies: calibrat d=150 mm per R₁=0 i d=1200 mm per R₁=5 kΩ; factor de sensibilitat k=|ΔU_s|/|Δd|</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017_Solucions.pdf#page=4" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017.pdf#page=2" target="_blank">Setembre 2017 · S2 · Ex1 · Q3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017.pdf#page=2" target="_blank">Setembre 2017 · S2 · Ex1 · Q3</a>
+          <span class="also-cat" onclick="showCat('elec-cc')" style="border-color:#e05c5c;color:#e05c5c" title="Veure tots els exercicis de Electricitat DC">↗ També a: Electricitat DC</span></td>
           <td class="td-enunciat">Resistència equivalent de dues resistències de 30 Ω en paral·lel amb toleràncies ±2% i ±5%: interval de valors possibles</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=2" target="_blank">Juny 2018 · S1 · Ex1 · Q4</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=2" target="_blank">Juny 2018 · S1 · Ex1 · Q4</a>
+          <span class="also-cat" onclick="showCat('elec-cc')" style="border-color:#e05c5c;color:#e05c5c" title="Veure tots els exercicis de Electricitat DC">↗ També a: Electricitat DC</span></td>
           <td class="td-enunciat">Diferència de pressió atmosfèrica real entre dues dates mesurada amb sensor de precisió ±0,3 hPa i estabilitat ±0,1 hPa/any (mesures 990 hPa i 1030 hPa, 1 any de diferència)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
@@ -1721,12 +1875,13 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2021_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2021.pdf#page=18" target="_blank">Juny 2021 · S5 · Ex1 · Q2</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2021.pdf#page=18" target="_blank">Juny 2021 · S5 · Ex1 · Q2</a></td>
           <td class="td-enunciat">Dues resistències de 12 Ω en sèrie amb toleràncies ±0,25% i ±1%: valor màxim i mínim de la resistència equivalent</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2021_Solucions.pdf#page=6" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2022.pdf#page=2" target="_blank">Juny 2022 · S2 · Ex1 · Q2</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2022.pdf#page=2" target="_blank">Juny 2022 · S2 · Ex1 · Q2</a>
+          <span class="also-cat" onclick="showCat('elec-cc')" style="border-color:#e05c5c;color:#e05c5c" title="Veure tots els exercicis de Electricitat DC">↗ També a: Electricitat DC</span></td>
           <td class="td-enunciat">Resistència normalitzada 390 Ω amb rang admissible 382,2–397,8 Ω. Determinació de la tolerància: ±2%.</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2022_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
@@ -1746,12 +1901,13 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=19" target="_blank">Juny 2023 · S5 · Ex1 · Q4</a> <span class="dual-badge">doble</span></td>
-          <td class="td-enunciat">Circuit elèctric amb resistència 20 Ω i 30 Ω en paral·lel, tolerància ±5%. Interval de valors de la resistència equivalent (doble amb Electricitat DC)</td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=19" target="_blank">Juny 2023 · S5 · Ex1 · Q4</a></td>
+          <td class="td-enunciat">Circuit elèctric amb resistència 20 Ω i 30 Ω en paral·lel, tolerància ±5%. Interval de valors de la resistència equivalent</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023_Solucions.pdf#page=6" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2025.pdf#page=2" target="_blank">Juny 2025 · S1 · Ex1 · Q1</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2025.pdf#page=2" target="_blank">Juny 2025 · S1 · Ex1 · Q1</a>
+          <span class="also-cat" onclick="showCat('elec-cc')" style="border-color:#e05c5c;color:#e05c5c" title="Veure tots els exercicis de Electricitat DC">↗ També a: Electricitat DC</span></td>
           <td class="td-enunciat">Cargols produïts amb diàmetre nominal 10 mm i tolerància ±0,05 mm. Diàmetre mínim acceptable</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2025_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
@@ -1766,12 +1922,13 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=2" target="_blank">Setembre 2025 · S3 · Ex1 · Q4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=2" target="_blank">Setembre 2025 · S3 · Ex1 · Q4</a></td>
           <td class="td-enunciat">Dues resistències 120 Ω i 240 Ω en paral·lel, tolerància ±2% cadascuna. Valor mínim possible de la resistència equivalent del circuit</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=3" target="_blank">Setembre 2025 · S3 · Ex1 · Q5</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=3" target="_blank">Setembre 2025 · S3 · Ex1 · Q5</a>
+          <span class="also-cat" onclick="showCat('elec-cc')" style="border-color:#e05c5c;color:#e05c5c" title="Veure tots els exercicis de Electricitat DC">↗ També a: Electricitat DC</span></td>
           <td class="td-enunciat">Ajust 30 G7/h6 (tolerància forat +28/+7 µm, tolerància eix 0/−13 µm). Joc màxim possible</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
@@ -1807,42 +1964,46 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016.pdf#page=4" target="_blank">Setembre 2016 · S1 · OpB · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016.pdf#page=4" target="_blank">Setembre 2016 · S1 · OpB · Ex4</a></td>
           <td class="td-enunciat">Motor de corrent continu (Γ=cI, I=(U−cω)/R): tensió d'alimentació quan I=50 A, velocitat angular quan I=100 A i corba de rendiment en funció de ω (0–600 rad/s)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
               <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=1" target="_blank">Juny 2017 · S1 · Ex1 · Q1</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=1" target="_blank">Juny 2017 · S1 · Ex1 · Q1</a>
+          <span class="also-cat" onclick="showCat('energia')" style="border-color:#c97ec9;color:#c97ec9" title="Veure tots els exercicis de Energia · Potència">↗ També a: Energia · Potència</span></td>
           <td class="td-enunciat">Nombre de parells de pols d'un motor asíncron de CA (n_s=600 min⁻¹, U=230 V, f=50 Hz)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=3" target="_blank">Juny 2017 · S1 · OpA · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=3" target="_blank">Juny 2017 · S1 · OpA · Ex4</a></td>
           <td class="td-enunciat">Elevador amb motor CC en sèrie amb reductor (m=2500 kg, Δh=5 m, t=60 s, η_red=0,70, η_mot=0,78, U=220 V, n=1500 min⁻¹): potència mecànica, potència motor, parell, intensitat i potència dissipada</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=6" target="_blank">Juny 2017 · S5 · Ex1 · Q5</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=6" target="_blank">Juny 2017 · S5 · Ex1 · Q5</a>
+          <span class="also-cat" onclick="showCat('energia')" style="border-color:#c97ec9;color:#c97ec9" title="Veure tots els exercicis de Energia · Potència">↗ També a: Energia · Potència</span></td>
           <td class="td-enunciat">Velocitat de sincronisme d'un motor asíncron en canviar de xarxa (750 min⁻¹ a 50 Hz/230 V → nova xarxa a 60 Hz/120 V)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017_Solucions.pdf#page=3" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017.pdf#page=3" target="_blank">Setembre 2017 · S2 · OpA · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017.pdf#page=3" target="_blank">Setembre 2017 · S2 · OpA · Ex4</a></td>
           <td class="td-enunciat">Aerogenerador (multiplicador τ=90, η_gen=0,85, Γ₁=1600 kNm, P_elèc=1,5 MW): potència i parell eix sortida multiplicador, rendiment multiplicador, potències dissipades</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=1" target="_blank">Juny 2018 · S1 · Ex1 · Q1</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=1" target="_blank">Juny 2018 · S1 · Ex1 · Q1</a>
+          <span class="also-cat" onclick="showCat('energia')" style="border-color:#c97ec9;color:#c97ec9" title="Veure tots els exercicis de Energia · Potència">↗ També a: Energia · Potència</span></td>
           <td class="td-enunciat">Lliscament relatiu s (%) d'un motor asíncron de CA de 2 parells de pols (U=230 V, f=50 Hz, n=1400 min⁻¹)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=3" target="_blank">Juny 2018 · S1 · OpA · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=3" target="_blank">Juny 2018 · S1 · OpA · Ex4</a></td>
           <td class="td-enunciat">Plataforma elevadora amb motor CC i reductor (Δh=4,5 m, t=50 s, η_red=0,72, U=220 V, I=17,5 A, n=1500 min⁻¹, Γ_m=19,5 Nm): potència elèctrica, rendiment motor, potència dissipada, massa càrrega</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018.pdf#page=2" target="_blank">Setembre 2018 · S3 · Ex1 · Q4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018.pdf#page=2" target="_blank">Setembre 2018 · S3 · Ex1 · Q4</a>
+          <span class="also-cat" onclick="showCat('energia')" style="border-color:#c97ec9;color:#c97ec9" title="Veure tots els exercicis de Energia · Potència">↗ També a: Energia · Potència</span></td>
           <td class="td-enunciat">Aerogenerador: rendiment η_gen del generador elèctric i potència dissipada (P_elèctr=1,2 MW, η_mult=0,70, P_entrada=1,966 MW)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
@@ -1852,57 +2013,65 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018.pdf#page=3" target="_blank">Setembre 2018 · S3 · OpA · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018.pdf#page=3" target="_blank">Setembre 2018 · S3 · OpA · Ex4</a></td>
           <td class="td-enunciat">Motorista pujant pendent (v=50 km/h, τ=0,044, η_eng=0,90, η_cad=0,85, d=620 mm, m=150 kg, Γ_motor=6 Nm): velocitats angulars, potència motor, potència mecànica roda i angle α, parell roda</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=3" target="_blank">Juny 2019 · S1 · OpA · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=3" target="_blank">Juny 2019 · S1 · OpA · Ex3</a>
+          <span class="also-cat" onclick="showCat('energia')" style="border-color:#c97ec9;color:#c97ec9" title="Veure tots els exercicis de Energia · Potència">↗ També a: Energia · Potència</span></td>
           <td class="td-enunciat">Parc eòlic (n=50 aerogeneradors, d=77 m, η_aerog=0,68, v=25 km/h, c_a=0,42): potència del vent, potència útil, energia total anual, ingressos i reducció per velocitat −10%</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=3" target="_blank">Juny 2019 · S1 · OpA · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=3" target="_blank">Juny 2019 · S1 · OpA · Ex4</a>
+          <span class="also-cat" onclick="showCat('energia')" style="border-color:#c97ec9;color:#c97ec9" title="Veure tots els exercicis de Energia · Potència">↗ També a: Energia · Potència</span></td>
           <td class="td-enunciat">Patinet elèctric (U=24 V, E_bat=250 Wh, η_motor=0,89, n_roda=664 min⁻¹, P_subm=200 W): parell motor, velocitat, energia mecànica útil, temps màxim i distància màxima</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=7" target="_blank">Juny 2019 · S4 · OpA · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=7" target="_blank">Juny 2019 · S4 · OpA · Ex4</a>
+          <span class="also-cat" onclick="showCat('energia')" style="border-color:#c97ec9;color:#c97ec9" title="Veure tots els exercicis de Energia · Potència">↗ També a: Energia · Potència</span></td>
           <td class="td-enunciat">Central mareomotriu (turbina+multiplicador+generador, P_elèc=1000 kW, n₁=10 min⁻¹, n₂=1500 min⁻¹, η_gen=0,87): P₂ i Γ₂ eix entrada generador, η_mult, τ, potència dissipada</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019_Solucions.pdf#page=5" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=9" target="_blank">Juny 2019 · S5 · Ex1 (Q4)</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=9" target="_blank">Juny 2019 · S5 · Ex1 (Q4)</a>
+          <span class="also-cat" onclick="showCat('energia')" style="border-color:#c97ec9;color:#c97ec9" title="Veure tots els exercicis de Energia · Potència">↗ També a: Energia · Potència</span></td>
           <td class="td-enunciat">Motor asíncron p=4 parells de pols, s=0,07, f=50 Hz: velocitat de gir n (min⁻¹)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019.pdf#page=3" target="_blank">Setembre 2019 · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019.pdf#page=3" target="_blank">Setembre 2019 · Ex3</a></td>
           <td class="td-enunciat">Cadira de rodes amb ajuda electromecànica (η_mot=0,87, η_red=0,95, d=200 mm, τ=0,08): velocitat angular motor ω_mot i rodes ω_r, potència P_subm i parell motor Γ</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=3" target="_blank">Juny 2020 · S1 · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=3" target="_blank">Juny 2020 · S1 · Ex3</a>
+          <span class="also-cat" onclick="showCat('energia')" style="border-color:#c97ec9;color:#c97ec9" title="Veure tots els exercicis de Energia · Potència">↗ També a: Energia · Potència</span></td>
           <td class="td-enunciat">Cadira de rodes amb ajuda electromecànica (η_mot=0,87, η_red=0,95, d=200 mm, τ=0,08, P_cons=75 W): velocitats angulars, potència a les rodes, parell motor Γ</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=9" target="_blank">Juny 2020 · S4 · Ex1 (Q5)</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=9" target="_blank">Juny 2020 · S4 · Ex1 (Q5)</a>
+          <span class="also-cat" onclick="showCat('energia')" style="border-color:#c97ec9;color:#c97ec9" title="Veure tots els exercicis de Energia · Potència">↗ També a: Energia · Potència</span></td>
           <td class="td-enunciat">Dos generadors síncrons (10 pols a 50 Hz i 12 pols a 60 Hz): comparació de les velocitats de gir dels seus eixos</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=12" target="_blank">Juny 2020 · S4 · Ex5</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=12" target="_blank">Juny 2020 · S4 · Ex5</a></td>
           <td class="td-enunciat">Bicicleta elèctrica (E_bat=400 Wh, η_motor=0,957, η_red=0,93, τ=0,065, d=710 mm, P_subm=250 W): energia dissipada, temps màxim, distància, velocitat angular rodes ω_r, parell motor Γ</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2020.pdf#page=3" target="_blank">Setembre 2020 · S4 · Ex5</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2020.pdf#page=3" target="_blank">Setembre 2020 · S4 · Ex5</a>
+          <span class="also-cat" onclick="showCat('energia')" style="border-color:#c97ec9;color:#c97ec9" title="Veure tots els exercicis de Energia · Potència">↗ També a: Energia · Potència</span></td>
           <td class="td-enunciat">Bicicleta elèctrica (E_bat=400 Wh, η_motor=0,957, η_red=0,93, τ=0,065, d=710 mm, P_subm=250 W): energia dissipada, temps màxim, distància, velocitat angular rodes, parell motor</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2020_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2021.pdf#page=26" target="_blank">Juny 2021 · S5 · Ex5</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2021.pdf#page=26" target="_blank">Juny 2021 · S5 · Ex5</a>
+          <span class="also-cat" onclick="showCat('energia')" style="border-color:#c97ec9;color:#c97ec9" title="Veure tots els exercicis de Energia · Potència">↗ També a: Energia · Potència</span></td>
           <td class="td-enunciat">Dron amb 4 motors en paral·lel (U=11,1 V, c=5200 mAh, η_motor=0,89, n=10000 min⁻¹, P_subm=30 W/motor): energia bateria E_bat=207,8 kJ, P_cons=33,71 W/motor; 5% descàrrega → t=77,06 s; parell Γ=28,65 mN·m</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2021_Solucions.pdf#page=8" target="_blank">✅ Solució</a></td>
         </tr>
@@ -1917,57 +2086,66 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2022_Solucions.pdf#page=3" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=6" target="_blank">Juny 2023 · S1 · Ex3</a> <span class="dual-badge">doble</span></td>
-          <td class="td-enunciat">Pantalla de projecció (m=2 kg) recollida per motor reductor (η_mot=0,9, d=250 mm) de h₁=0,3 m a h₂=2 m en t=8 s. P_elèctr, ω_mot i Γ_mot, increment de P si es puja amb la meitat del temps (doble amb Energia)</td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=6" target="_blank">Juny 2023 · S1 · Ex3</a></td>
+          <td class="td-enunciat">Pantalla de projecció (m=2 kg) recollida per motor reductor (η_mot=0,9, d=250 mm) de h₁=0,3 m a h₂=2 m en t=8 s. P_elèctr, ω_mot i Γ_mot, increment de P si es puja amb la meitat del temps</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=12" target="_blank">Juny 2023 · S1 · Ex6</a> <span class="dual-badge">doble</span></td>
-          <td class="td-enunciat">Espremedora domèstica: motor CC d'imants permanents (Γ_mot=(0,08U−0,01ω) N·m, U=24 V), reductor (z_p=9, z_r=62). Relació transmissió τ, corba parell-velocitat i n_màx, intensitat I (n_mot=1000 min⁻¹, η=0,55), ω_con (doble amb Electricitat DC)</td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=12" target="_blank">Juny 2023 · S1 · Ex6</a>
+          <span class="also-cat" onclick="showCat('elec-cc')" style="border-color:#e05c5c;color:#e05c5c" title="Veure tots els exercicis de Electricitat DC">↗ També a: Electricitat DC</span></td>
+          <td class="td-enunciat">Espremedora domèstica: motor CC d'imants permanents (Γ_mot=(0,08U−0,01ω) N·m, U=24 V), reductor (z_p=9, z_r=62). Relació transmissió τ, corba parell-velocitat i n_màx, intensitat I (n_mot=1000 min⁻¹, η=0,55), ω_con</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023_Solucions.pdf#page=5" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=18" target="_blank">Juny 2023 · S5 · Ex1 · Q3</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=18" target="_blank">Juny 2023 · S5 · Ex1 · Q3</a>
+          <span class="also-cat" onclick="showCat('energia')" style="border-color:#c97ec9;color:#c97ec9" title="Veure tots els exercicis de Energia · Potència">↗ També a: Energia · Potència</span></td>
           <td class="td-enunciat">Motor d'inducció trifàsic hexapolar (230 V, 50 Hz, n=940 min⁻¹). Lliscament en tant per u.</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023_Solucions.pdf#page=6" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=22" target="_blank">Juny 2023 · S5 · Ex3</a> <span class="dual-badge">doble</span></td>
-          <td class="td-enunciat">Petits aerogeneradors rurals (E_casa=500 kWh/any, η_gen=1/3, v=4 m/s). P_rotor, ω i Γ a l'eix del rotor, energia anual E_subm, nombre q d'aerogeneradors (doble amb Energia)</td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=22" target="_blank">Juny 2023 · S5 · Ex3</a></td>
+          <td class="td-enunciat">Petits aerogeneradors rurals (E_casa=500 kWh/any, η_gen=1/3, v=4 m/s). P_rotor, ω i Γ a l'eix del rotor, energia anual E_subm, nombre q d'aerogeneradors</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023_Solucions.pdf#page=7" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=28" target="_blank">Juny 2023 · S5 · Ex6</a> <span class="dual-badge">doble</span></td>
-          <td class="td-enunciat">Cadira de rodes elèctrica (v=4 km/h, pendent 10%, m=240 kg, d=300 mm, η=0,79, 2 rodes motrius). P_mec per roda, parell Γ per roda, potència elèctrica total P_cons (doble amb Energia)</td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=28" target="_blank">Juny 2023 · S5 · Ex6</a>
+          <span class="also-cat" onclick="showCat('energia')" style="border-color:#c97ec9;color:#c97ec9" title="Veure tots els exercicis de Energia · Potència">↗ També a: Energia · Potència</span></td>
+          <td class="td-enunciat">Cadira de rodes elèctrica (v=4 km/h, pendent 10%, m=240 kg, d=300 mm, η=0,79, 2 rodes motrius). P_mec per roda, parell Γ per roda, potència elèctrica total P_cons</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023_Solucions.pdf#page=10" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023.pdf#page=8" target="_blank">Setembre 2023 · S2 · Ex4</a> <span class="dual-badge">doble</span></td>
-          <td class="td-enunciat">Cadira de rodes elèctrica (U=36 V, E_bat=240 Wh, η=0,72, m=130 kg, α=8°). Capacitat c, velocitats v₁ i v₂, temps màxims i distància màxima s_màx (doble amb Energia)</td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023.pdf#page=8" target="_blank">Setembre 2023 · S2 · Ex4</a>
+          <span class="also-cat" onclick="showCat('energia')" style="border-color:#c97ec9;color:#c97ec9" title="Veure tots els exercicis de Energia · Potència">↗ També a: Energia · Potència</span></td>
+          <td class="td-enunciat">Cadira de rodes elèctrica (U=36 V, E_bat=240 Wh, η=0,72, m=130 kg, α=8°). Capacitat c, velocitats v₁ i v₂, temps màxims i distància màxima s_màx</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023_Solucions.pdf#page=3" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023.pdf#page=10" target="_blank">Setembre 2023 · S2 · Ex5</a> <span class="dual-badge">doble</span></td>
-          <td class="td-enunciat">Cistella de bàsquet (m_c=45 kg) i barra OBC (m_b=60 kg), mecanisme de tambor (d=250 mm). Diagrama cos lliure, força T al cable (φ=45°), forces a articulació O, parell Γ del motor (doble amb Sòlid-rígid)</td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023.pdf#page=10" target="_blank">Setembre 2023 · S2 · Ex5</a>
+          <span class="also-cat" onclick="showCat('solid')" style="border-color:#c9a06e;color:#c9a06e" title="Veure tots els exercicis de Sòlid-rígid">↗ També a: Sòlid-rígid</span></td>
+          <td class="td-enunciat">Cistella de bàsquet (m_c=45 kg) i barra OBC (m_b=60 kg), mecanisme de tambor (d=250 mm). Diagrama cos lliure, força T al cable (φ=45°), forces a articulació O, parell Γ del motor</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023_Solucions.pdf#page=4" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024.pdf#page=6" target="_blank">Juny 2024 · S1 · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024.pdf#page=6" target="_blank">Juny 2024 · S1 · Ex3</a>
+          <span class="also-cat" onclick="showCat('energia')" style="border-color:#c97ec9;color:#c97ec9" title="Veure tots els exercicis de Energia · Potència">↗ També a: Energia · Potència</span></td>
           <td class="td-enunciat">Patinet elèctric (U=24 V, E_bat=250 Wh, η_mot=0,85, d_roda=140 mm, m=70 kg, v=8 km/h, α=7°): potència elèctrica consumida P_elèc, velocitat angular del motor ω_mot i parell Γ, percentatge d'energia consumida de la bateria Δ</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2024.pdf#page=6" target="_blank">Setembre 2024 · S3 · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2024.pdf#page=6" target="_blank">Setembre 2024 · S3 · Ex3</a>
+          <span class="also-cat" onclick="showCat('energia')" style="border-color:#c97ec9;color:#c97ec9" title="Veure tots els exercicis de Energia · Potència">↗ També a: Energia · Potència</span></td>
           <td class="td-enunciat">Cistella de bàsquet solidària a barra OC (m=100 kg, l=1 m, ω=0,1745 rad/s, η=0,8). Maniobra plegat de φ₁=45° a φ₂=15°: energia mecànica E_mec, energia motor E_mot, velocitat vertical centre d'inèrcia v_vert (a φ=30°), potència motor P_mot</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2024_Solucions.pdf#page=3" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2025.pdf#page=6" target="_blank">Juny 2025 · S1 · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2025.pdf#page=6" target="_blank">Juny 2025 · S1 · Ex3</a>
+          <span class="also-cat" onclick="showCat('energia')" style="border-color:#c97ec9;color:#c97ec9" title="Veure tots els exercicis de Energia · Potència">↗ També a: Energia · Potència</span></td>
           <td class="td-enunciat">Elevador de taller de 2 columnes (m=1900 kg per columna, h=1,8 m, p=7 mm/volta, η=0,4, n_mot=1420 min⁻¹, t=45 s): potència mecànica P_mec, potència elèctrica P_elèc per motor, voltes del cargol n_voltes, relació de transmissió del reductor i</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2025_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=3" target="_blank">Setembre 2025 · S3 · Ex1 · Q6</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=3" target="_blank">Setembre 2025 · S3 · Ex1 · Q6</a>
+          <span class="also-cat" onclick="showCat('energia')" style="border-color:#c97ec9;color:#c97ec9" title="Veure tots els exercicis de Energia · Potència">↗ També a: Energia · Potència</span></td>
           <td class="td-enunciat">Motor de corrent continu (U_N=24 V, I_N=3,47 A, P_N=60 W, n_N=8500 min⁻¹). Parell nominal del motor</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
@@ -2007,7 +2185,7 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=4" target="_blank">Juny 2018 · S1 · OpB · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=4" target="_blank">Juny 2018 · S1 · OpB · Ex3</a></td>
           <td class="td-enunciat">Placa quadrada d'acer amb cilindre hidràulic de doble efecte (L=1000 mm, e=100 mm, d_int=70 mm, d_tija=40 mm, φ=0°): diagrama cos lliure, massa, força F_c, tensió tija σ i pressió interior p_int</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
@@ -2027,12 +2205,13 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=8" target="_blank">Juny 2019 · S4 · OpB · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=8" target="_blank">Juny 2019 · S4 · OpB · Ex4</a></td>
           <td class="td-enunciat">Ascensor hidràulic d'acció directa (d_int=90 mm, d_tija=70 mm, m=1170 kg, v=0,33 m/s, P_elèctr=5300 W, η_b=0,85): cabal q i pressió p bomba, força F_ch i pressió p_int, rendiment η_ch i P_diss</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019_Solucions.pdf#page=6" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=9" target="_blank">Juny 2019 · S5 · Ex1 (Q5)</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=9" target="_blank">Juny 2019 · S5 · Ex1 (Q5)</a>
+          <span class="also-cat" onclick="showCat('solid')" style="border-color:#c9a06e;color:#c9a06e" title="Veure tots els exercicis de Sòlid-rígid">↗ També a: Sòlid-rígid</span></td>
           <td class="td-enunciat">Cilindre hidràulic de doble efecte (d=40 mm, d_tija=25 mm, p=0,6 MPa): força en la cursa d'avanç</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
@@ -2047,17 +2226,18 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=10" target="_blank">Juny 2023 · S1 · Ex5</a> <span class="dual-badge">doble</span></td>
-          <td class="td-enunciat">Grua per elevar caixes de fruita: barra OBC articulada a O, cilindre hidràulic (d_int=40 mm) entre P i B (l=2 m). Diagrama cos lliure, relació φ-α, força F_c (φ=30°), pressió p_int (doble amb Sòlid-rígid)</td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=10" target="_blank">Juny 2023 · S1 · Ex5</a></td>
+          <td class="td-enunciat">Grua per elevar caixes de fruita: barra OBC articulada a O, cilindre hidràulic (d_int=40 mm) entre P i B (l=2 m). Diagrama cos lliure, relació φ-α, força F_c (φ=30°), pressió p_int</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023_Solucions.pdf#page=4" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=19" target="_blank">Juny 2023 · S5 · Ex1 · Q5</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=19" target="_blank">Juny 2023 · S5 · Ex1 · Q5</a>
+          <span class="also-cat" onclick="showCat('materials')" style="border-color:#d4a853;color:#d4a853" title="Veure tots els exercicis de Materials">↗ També a: Materials</span></td>
           <td class="td-enunciat">Cilindre d'efecte simple (p=0,7 MPa, d_èmbol=40 mm, d_tija=25 mm). Força teòrica en el procés d'avanç.</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023_Solucions.pdf#page=6" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023.pdf#page=2" target="_blank">Setembre 2023 · S2 · Ex1 · Q3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023.pdf#page=2" target="_blank">Setembre 2023 · S2 · Ex1 · Q3</a></td>
           <td class="td-enunciat">Bomba depuradora de piscina (P=1,1 kW, η=0,7, q=10 m³/h, 6 h/dia, 7 mesos). Cost econòmic total de funcionament (doble amb Matemàtiques aplicades)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
@@ -2067,8 +2247,8 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023.pdf#page=12" target="_blank">Setembre 2023 · S2 · Ex6</a> <span class="dual-badge">doble</span></td>
-          <td class="td-enunciat">Selecció de cilindre hidràulic d'efecte simple (q=3 m³/h, p_màx=20 MPa, F=65000 N, taula de 10 models). Model mínim, pressió p₀ bomba, velocitat v_tija i potència P_cil, tensió σ de la tija (doble amb Materials)</td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023.pdf#page=12" target="_blank">Setembre 2023 · S2 · Ex6</a></td>
+          <td class="td-enunciat">Selecció de cilindre hidràulic d'efecte simple (q=3 m³/h, p_màx=20 MPa, F=65000 N, taula de 10 models). Model mínim, pressió p₀ bomba, velocitat v_tija i potència P_cil, tensió σ de la tija</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023_Solucions.pdf#page=5" target="_blank">✅ Solució</a></td>
         </tr>
 </tbody>
@@ -2093,32 +2273,33 @@
       </tr></thead>
       <tbody>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016.pdf#page=4" target="_blank">Setembre 2016 · S1 · OpB · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016.pdf#page=4" target="_blank">Setembre 2016 · S1 · OpB · Ex3</a>
+          <span class="also-cat" onclick="showCat('hidro')" style="border-color:#64a0dc;color:#64a0dc" title="Veure tots els exercicis de Hidràulica i Pneumàtica">↗ També a: Hidràulica i Pneumàtica</span></td>
           <td class="td-enunciat">Sistema de politges per pujar un bloc de 50 kg (cable d=5 mm, E=130 GPa, L=2000 mm): tensió i deformació del cable, allargament ΔL i parell Γ del motor</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2016_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
               <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=4" target="_blank">Juny 2017 · S1 · OpB · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=4" target="_blank">Juny 2017 · S1 · OpB · Ex3</a></td>
           <td class="td-enunciat">Placa d'alumini articulada en O, sostinguda per cable d'acer a A (L=1000 mm, d=2 mm, e=5 mm): diagrama cos lliure, massa, forces T/F_h/F_v, tensió i deformació del cable</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=7" target="_blank">Juny 2017 · S5 · OpA · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=7" target="_blank">Juny 2017 · S5 · OpA · Ex4</a></td>
           <td class="td-enunciat">Ascensor amb contrapès (m_c=320 kg, m_cp=120 kg, n=6 cintes s=30×2,5 mm²): tensió normal màxima que suporten les cintes</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017_Solucions.pdf#page=4" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=4" target="_blank">Juny 2018 · S1 · OpB · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=4" target="_blank">Juny 2018 · S1 · OpB · Ex3</a></td>
           <td class="td-enunciat">Placa quadrada d'acer articulada en O, controlada per cilindre hidràulic en B (L=1000 mm, d_int=70 mm, d_tija=40 mm, ρ=7850 kg/m³, φ=0°): diagrama cos lliure, massa, força F_c, tensió i pressió interior</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=8" target="_blank">Juny 2018 · S5 · OpB · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=8" target="_blank">Juny 2018 · S5 · OpB · Ex3</a></td>
           <td class="td-enunciat">Cartell publicitari de dos taulers (h=900 mm, b=600 mm, e=11 mm, s=1,8 mm², α=40°, ρ=530 kg/m³): massa, força N terra, força F cables i tensió normal σ cables</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018_Solucions.pdf#page=5" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018.pdf#page=8" target="_blank">Setembre 2018 · S1 · OpB · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018.pdf#page=8" target="_blank">Setembre 2018 · S1 · OpB · Ex3</a></td>
           <td class="td-enunciat">Cartell publicitari de dos taulers (h=900 mm, b=600 mm, e=11 mm, s=1,8 mm², α=40°, ρ=530 kg/m³): massa, força N terra, força F cables i tensió normal σ cables</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018_Solucions.pdf#page=3" target="_blank">✅ Solució</a></td>
         </tr>
@@ -2133,12 +2314,12 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019.pdf#page=4" target="_blank">Setembre 2019 · Ex5</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019.pdf#page=4" target="_blank">Setembre 2019 · Ex5</a></td>
           <td class="td-enunciat">Fanal (m=30 kg) penjat al punt mig de barra BO articulada a O, tirant AB d'acer (σ=250 MPa, d=4 mm): T_AB, σ_AB, forces a O, anàlisi si d'=1 mm</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=4" target="_blank">Juny 2020 · S1 · Ex5</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=4" target="_blank">Juny 2020 · S1 · Ex5</a></td>
           <td class="td-enunciat">Fanal (m=30 kg) penjat al punt mig de barra BO articulada a O, tirant AB d'acer (d=4 mm): T_AB, σ_AB, forces F_H i F_V a articulació O</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
@@ -2148,12 +2329,12 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=4" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=11" target="_blank">Juny 2020 · S4 · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=11" target="_blank">Juny 2020 · S4 · Ex3</a></td>
           <td class="td-enunciat">Barra OB negligible sosté bola m=200 kg, tirant AC (d=3 mm): diagrama cos lliure, força T_AC, forces F_H i F_V, tensió normal σ</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2020.pdf#page=3" target="_blank">Setembre 2020 · S4 · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2020.pdf#page=3" target="_blank">Setembre 2020 · S4 · Ex3</a></td>
           <td class="td-enunciat">Barra OB negligible sosté bola m=200 kg, tirant AC (d=3 mm): diagrama cos lliure, força T_AC, forces F_H i F_V, tensió normal σ</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2020_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
@@ -2193,17 +2374,19 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2022_Solucions.pdf#page=4" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=10" target="_blank">Juny 2023 · S1 · Ex5</a> <span class="dual-badge">doble</span></td>
-          <td class="td-enunciat">Grua per elevar caixes de fruita: barra OBC (2l=4 m) articulada a O, m=75 kg (3 caixes), cilindre hidràulic (d_int=40 mm) entre P i B. Diagrama cos lliure, relació φ-α, F_c (φ=30°), pressió p_int (doble amb Hidràulica)</td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023.pdf#page=10" target="_blank">Juny 2023 · S1 · Ex5</a></td>
+          <td class="td-enunciat">Grua per elevar caixes de fruita: barra OBC (2l=4 m) articulada a O, m=75 kg (3 caixes), cilindre hidràulic (d_int=40 mm) entre P i B. Diagrama cos lliure, relació φ-α, F_c (φ=30°), pressió p_int</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2023_Solucions.pdf#page=4" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023.pdf#page=10" target="_blank">Setembre 2023 · S2 · Ex5</a> <span class="dual-badge">doble</span></td>
-          <td class="td-enunciat">Cistella de bàsquet (m_c=45 kg) solidària a barra OBC (m_b=60 kg, 2l=4 m), tambor (d=250 mm), cable BP ⊥ barra quan φ=45°. Diagrama cos lliure, força T al cable, forces F_V i F_H a O, parell Γ del motor (doble amb Motors)</td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023.pdf#page=10" target="_blank">Setembre 2023 · S2 · Ex5</a>
+          <span class="also-cat" onclick="showCat('motors')" style="border-color:#5ce0c8;color:#5ce0c8" title="Veure tots els exercicis de Motors · Generadors">↗ També a: Motors · Generadors</span></td>
+          <td class="td-enunciat">Cistella de bàsquet (m_c=45 kg) solidària a barra OBC (m_b=60 kg, 2l=4 m), tambor (d=250 mm), cable BP ⊥ barra quan φ=45°. Diagrama cos lliure, força T al cable, forces F_V i F_H a O, parell Γ del motor</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2023_Solucions.pdf#page=4" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024.pdf#page=10" target="_blank">Juny 2024 · S1 · Ex5</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024.pdf#page=10" target="_blank">Juny 2024 · S1 · Ex5</a>
+          <span class="also-cat" onclick="showCat('materials')" style="border-color:#d4a853;color:#d4a853" title="Veure tots els exercicis de Materials">↗ També a: Materials</span></td>
           <td class="td-enunciat">Força del múscul tibial anterior per mantenir el peu en posició horitzontal elevat (articulació turmell O fixa, m=2,2 kg, a=30 mm, b=35 mm, c=40 mm, φ=9°): diagrama de cos lliure, força muscular F_m, forces a l'articulació O</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024_Solucions.pdf#page=4" target="_blank">✅ Solució</a></td>
         </tr>
@@ -2213,8 +2396,8 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2024_Solucions.pdf#page=5" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=8" target="_blank">Setembre 2025 · S3 · Ex4</a> <span class="dual-badge">doble</span></td>
-          <td class="td-enunciat">Guia OC de fusta (l=1 m, m=0,75 kg) articulada a la paret; tensor AB (fil de cotó, d_f=1,4 mm, σ_màx=80 MPa, φ=30°, d=0,3 m). Diagrama cos lliure, expressió T(x), T_màx, x_màx per no trencar el fil (doble amb Materials)</td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025.pdf#page=8" target="_blank">Setembre 2025 · S3 · Ex4</a></td>
+          <td class="td-enunciat">Guia OC de fusta (l=1 m, m=0,75 kg) articulada a la paret; tensor AB (fil de cotó, d_f=1,4 mm, σ_màx=80 MPa, φ=30°, d=0,3 m). Diagrama cos lliure, expressió T(x), T_màx, x_màx per no trencar el fil</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2025_Solucions.pdf#page=4" target="_blank">✅ Solució</a></td>
         </tr>
 </tbody>
@@ -2239,7 +2422,8 @@
       </tr></thead>
       <tbody>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024.pdf#page=12" target="_blank">Juny 2024 · S1 · Ex6</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024.pdf#page=12" target="_blank">Juny 2024 · S1 · Ex6</a>
+          <span class="also-cat" onclick="showCat('digital')" style="border-color:#5b8dee;color:#5b8dee" title="Veure tots els exercicis de Electrònica digital">↗ També a: Electrònica digital</span></td>
           <td class="td-enunciat">Circuit RL en sèrie: font alterna sinusoïdal f=50 Hz, R₁=5 Ω, L₁=7 mH, wattímetre W₁=950 W. Reactància inductiva X_L, factor de potència cos φ, impedància equivalent Z, mesura amperímetre A₁, tensió eficaç d'alimentació U₁</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2024_Solucions.pdf#page=5" target="_blank">✅ Solució</a></td>
         </tr>
@@ -2290,12 +2474,13 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2016_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
               <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=6" target="_blank">Juny 2017 · S5 · Ex2</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=6" target="_blank">Juny 2017 · S5 · Ex2</a></td>
           <td class="td-enunciat">Cotxe amb 4 cilindres: sistema de desconnexió de 2 cilindres si velocitat motor entre 1400–4000 min⁻¹ I demanda actual baixa I darrer km demanda baixa</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017_Solucions.pdf#page=3" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=8" target="_blank">Juny 2017 · S5 · OpB · Ex4</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017.pdf#page=8" target="_blank">Juny 2017 · S5 · OpB · Ex4</a>
+          <span class="also-cat" onclick="showCat('mat')" style="border-color:#7ec98a;color:#7ec98a" title="Veure tots els exercicis de Matemàtiques aplic.">↗ També a: Matemàtiques aplic.</span></td>
           <td class="td-enunciat">Central elèctrica de cicle combinat (gas natural + vapor, p=32,1 MJ/kg, ρ=0,423 kg/L, V=4515 m³/24h, P_elèc=390 MW): potència consumida, rendiment total η i rendiment del cicle de gas η_g</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2017_Solucions.pdf#page=4" target="_blank">✅ Solució</a></td>
         </tr>
@@ -2305,47 +2490,51 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017.pdf#page=2" target="_blank">Setembre 2017 · S2 · Ex1 · Q5</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017.pdf#page=2" target="_blank">Setembre 2017 · S2 · Ex1 · Q5</a></td>
           <td class="td-enunciat">Consum en L/(100 km) d'un vehicle de F1 (c_m=2,9 kg/volta, ρ=0,75 kg/L, d=5,543 km/volta)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2017_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=1" target="_blank">Juny 2018 · S1 · Ex1 · Q3</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=1" target="_blank">Juny 2018 · S1 · Ex1 · Q3</a>
+          <span class="also-cat" onclick="showCat('elec-cc')" style="border-color:#e05c5c;color:#e05c5c" title="Veure tots els exercicis de Electricitat DC">↗ També a: Electricitat DC</span></td>
           <td class="td-enunciat">Nombre de cilindres d'un motor de combustió (cilindrada 1998 cm³, diàmetre = cursa = 86 mm)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=4" target="_blank">Juny 2018 · S1 · OpB · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=4" target="_blank">Juny 2018 · S1 · OpB · Ex4</a></td>
           <td class="td-enunciat">Vehicle gasolina/GLP (v=120 km/h): potència tèrmica consumida amb cada combustible, cost per 100 km, distància per amortitzar instal·lació GLP, distància estimada amb dipòsit al 85%</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=7" target="_blank">Juny 2018 · S5 · OpA · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=7" target="_blank">Juny 2018 · S5 · OpA · Ex3</a>
+          <span class="also-cat" onclick="showCat('energia')" style="border-color:#c97ec9;color:#c97ec9" title="Veure tots els exercicis de Energia · Potència">↗ També a: Energia · Potència</span></td>
           <td class="td-enunciat">Automòbil en pendent: força resistent F_r=(230+0,13v²) N, corba potència-velocitat, parell Γ del motor (η=0,8, n=2500 min⁻¹, v=60 km/h)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018_Solucions.pdf#page=4" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=8" target="_blank">Juny 2018 · S5 · OpB · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018.pdf#page=8" target="_blank">Juny 2018 · S5 · OpB · Ex4</a></td>
           <td class="td-enunciat">Avió comercial (p_c=42,42 MJ/kg, ρ=0,8075 kg/L, N=144 seients, V=24000 L, v=850 km/h): distància màxima, consum mínim per passatger i rendiment dels motors</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2018_Solucions.pdf#page=5" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018.pdf#page=4" target="_blank">Setembre 2018 · S3 · OpB · Ex4</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018.pdf#page=4" target="_blank">Setembre 2018 · S3 · OpB · Ex4</a>
+          <span class="also-cat" onclick="showCat('energia')" style="border-color:#c97ec9;color:#c97ec9" title="Veure tots els exercicis de Energia · Potència">↗ També a: Energia · Potència</span></td>
           <td class="td-enunciat">Central elèctrica de cicle combinat (p=32,5 MJ/kg, ρ=0,423 kg/L, P_elèc=500 MW, η=0,575, η_g=0,32): potència consumida, volum gas en 24h, potència dissipada cicle gas, rendiment cicle vapor</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018_Solucions.pdf#page=2" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018.pdf#page=3" target="_blank">Setembre 2018 · S3 · OpA · Ex3</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018.pdf#page=3" target="_blank">Setembre 2018 · S3 · OpA · Ex3</a></td>
           <td class="td-enunciat">Automòbil en pendent: força resistent F_r=(230+0,13v²) N, corba potència-velocitat, parell Γ del motor (η=0,8, n=2500 min⁻¹, v=60 km/h)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018_Solucions.pdf#page=3" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018.pdf#page=8" target="_blank">Setembre 2018 · S1 · OpB · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018.pdf#page=8" target="_blank">Setembre 2018 · S1 · OpB · Ex4</a></td>
           <td class="td-enunciat">Avió comercial (p_c=42,42 MJ/kg, ρ=0,8075 kg/L, N=144 seients, V=24000 L, v=850 km/h): distància màxima, consum mínim per passatger i rendiment dels motors</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2018_Solucions.pdf#page=3" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=1" target="_blank">Juny 2019 · S1 · Ex1 (Q3)</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=1" target="_blank">Juny 2019 · S1 · Ex1 (Q3)</a>
+          <span class="also-cat" onclick="showCat('energia')" style="border-color:#c97ec9;color:#c97ec9" title="Veure tots els exercicis de Energia · Potència">↗ També a: Energia · Potència</span></td>
           <td class="td-enunciat">Emissions CO₂ d'un vehicle de gasoil: 118 g/km, consum de 50 L amb consum mitjà de 5,4 L/100 km → kg de CO₂ (petjada de carboni)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
@@ -2365,27 +2554,28 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019_Solucions.pdf#page=4" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=12" target="_blank">Juny 2019 · S5 · OpB · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019.pdf#page=12" target="_blank">Juny 2019 · S5 · OpB · Ex4</a></td>
           <td class="td-enunciat">Vehicle (6,3 L/100 km, v=120 km/h, V=60 L, η_trans=0,92, η_mot=0,30, ρ=0,75 kg/L, p_c=43,5 MJ/kg): distància al 80%, P_tèrm, P_rodes i Γ_rodes, P_diss</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2019_Solucions.pdf#page=3" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019.pdf#page=1" target="_blank">Setembre 2019 · Ex1 (Q2)</a></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019.pdf#page=1" target="_blank">Setembre 2019 · Ex1 (Q2)</a>
+          <span class="also-cat" onclick="showCat('energia')" style="border-color:#c97ec9;color:#c97ec9" title="Veure tots els exercicis de Energia · Potència">↗ També a: Energia · Potència</span></td>
           <td class="td-enunciat">Cilindrada motor 4 cilindres en línia (d=79,5 mm, c=80,5 mm)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019.pdf#page=1" target="_blank">Setembre 2019 · Ex1 (Q3)</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019.pdf#page=1" target="_blank">Setembre 2019 · Ex1 (Q3)</a></td>
           <td class="td-enunciat">Porta corredissa (n_mot=1500 min⁻¹, r=30 mm, v_nom=0,12 m/s): relació de transmissió τ entre l'eix de sortida del reductor i l'eix del motor</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019.pdf#page=3" target="_blank">Setembre 2019 · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019.pdf#page=3" target="_blank">Setembre 2019 · Ex4</a></td>
           <td class="td-enunciat">Estufa de butà exterior (p_b=49,61 MJ/kg, m_b=12,5 kg): P_mín i P_màx, durada màxima bombona, gràfic t(c), massa CO₂ (n=3 estufes, 10 h, FE=2,96 kg/kg)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Setembre_2019_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=3" target="_blank">Juny 2020 · S1 · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=3" target="_blank">Juny 2020 · S1 · Ex4</a></td>
           <td class="td-enunciat">Estufa exterior de butà (p_b=49,61 MJ/kg, m_b=12,5 kg): P_mín i P_màx, durada màxima bombona, gràfic t(c), massa CO₂ (n=3, 10 h, FE=2,96 kg/kg)</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=1" target="_blank">✅ Solució</a></td>
         </tr>
@@ -2395,12 +2585,12 @@
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=3" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=7" target="_blank">Juny 2020 · S3 · Ex4</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=7" target="_blank">Juny 2020 · S3 · Ex4</a></td>
           <td class="td-enunciat">Cotxe benzina (m=1650 kg, v₁=80→v₂=120 km/h en t=6,9 s, p=46 MJ/kg, ρ=0,72 g/cm³, η=0,4): potència útil, energia consumida i volum combustible</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=4" target="_blank">✅ Solució</a></td>
         </tr>
         <tr>
-          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=8" target="_blank">Juny 2020 · S3 · Ex6</a> <span class="dual-badge">doble</span></td>
+          <td class="td-ref"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020.pdf#page=8" target="_blank">Juny 2020 · S3 · Ex6</a></td>
           <td class="td-enunciat">Hivernacle amb caldera de gasoil (η_c=0,91, P_subm=1758 kW, 4 h/dia, 170 dies/any, p_c=44,8 MJ/kg, ρ=0,85 kg/L, FE=2,79 kg/L): E_subm i E_cons, V, cost anual, massa CO₂</td>
           <td class="td-solucio"><a href="pdfs/Examen_de_Tecnologia_Industrial_Juny_2020_Solucions.pdf#page=5" target="_blank">✅ Solució</a></td>
         </tr>
